@@ -385,6 +385,17 @@ Import `global.css` once in `BaseLayout.astro` (or any shared layout) so Tailwin
 
 ---
 
+## Environment Variables
+
+All secrets live in `.env` at the project root. Never hardcode keys in source files.
+
+Required variables:
+- `PUBLIC_SANITY_PROJECT_ID` — from your Sanity project dashboard
+- `PUBLIC_SANITY_DATASET` — set to `production`
+
+`.env` is gitignored. `.env.example` is committed as a reference.
+When deploying to Vercel, add these same variables in the Vercel dashboard under Project Settings → Environment Variables.
+
 ## Deployment (Vercel)
 
 1. Push project to GitHub
