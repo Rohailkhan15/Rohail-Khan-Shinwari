@@ -1,0 +1,63 @@
+---
+import type { Project } from '../data/projects'
+
+interface Props {
+  project: Project
+}
+
+const { project } = Astro.props
+
+const statusColors = {
+  live: 'bg-green-100 text-green-700',
+  building: 'bg-yellow-100 text-yellow-700',
+  concept: 'bg-gray-100 text-gray-700',
+}
+---
+
+<div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md" data-status={project.status}>
+  <!-- Status Badge -->
+  <div class="mb-3 flex items-center gap-2">
+    <span class={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[project.status]}`}>
+      {project.status}
+    </span>
+  </div>
+
+  <!-- Title -->
+  <h3 class="font-display text-xl font-semibold">{project.title}</h3>
+
+  <!-- Description -->
+  <p class="mt-2 text-sm text-muted">{project.description}</p>
+
+  <!-- Tags -->
+  <div class="mt-4 flex flex-wrap gap-2">
+    {project.tags.map(tag => (
+      <span class="rounded-full bg-tag px-2 py-1 text-xs text-accent">
+        {tag}
+      </span>
+    ))}
+  </div>
+
+  <!-- Links -->
+  <div class="mt-4 flex gap-4">
+    {project.github && (
+      <a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
+      >
+        GitHub
+      </a>
+    )}
+    {project.demo && (
+      <a
+        href={project.demo}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
+      >
+        Live Demo
+      </a>
+    )}
+  </div>
+</div>

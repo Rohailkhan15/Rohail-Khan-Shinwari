@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import ProjectCard from '../../components/ProjectCard.astro'
+import { projects } from '../../data/projects'
+
+const filters = ['All', 'Live', 'Building', 'Concept']
+---
+
+<BaseLayout title="Rohail — Projects">
+  <section class="py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <h1 class="font-display text-3xl font-bold md:text-4xl">Projects</h1>
+
+      <!-- Filter Bar -->
+      <div class="mt-8 flex flex-wrap gap-2">
+        {filters.map(filter => (
+          <button
+            class={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              filter === 'All'
+                ? 'bg-accent text-surface'
+                : 'bg-surface text-muted hover:text-text'
+            }`}
+            data-filter={filter}
+          >
+            {filter}
+          </button>
+        ))}
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map(project => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="mt-12 hidden text-center">
+        <p class="text-muted">No projects found for this filter.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll('[data-filter]')
+  const cards = document.querySelectorAll('[data-status]')
+  const emptyState = document.getElementById('empty-state')
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Update button styles
+      buttons.forEach(b => {
+        b.classList.remove('bg-accent', 'text-surface')
+        b.classList.add('bg-surface', 'text-muted')
+      })
+      button.classList.remove('bg-surface', 'text-muted')
+      button.classList.add('bg-accent', 'text-surface')
+
+      // Filter projects
+      const filter = button.getAttribute('data-filter')
+      let visibleCount = 0
+
+      cards.forEach(card => {
+        if (filter === 'All') {
+          card.classList.remove('hidden')
+          visibleCount++
+        } else {
+          const status = card.getAttribute('data-status')
+          if (status?.toLowerCase() === filter?.toLowerCase()) {
+            card.classList.remove('hidden')
+            visibleCount++
+          } else {
+            card.classList.add('hidden')
+          }
+        }
+      })
+
+      // Show/hide empty state
+      if (visibleCount === 0) {
+        emptyState?.classList.remove('hidden')
+      } else {
+        emptyState?.classList.add('hidden')
+      }
+    })
+  })
+</script>
