@@ -1,17 +1,202 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+// TODO: Replace with actual project data from src/data/projects.ts
+const featuredProjects = [
+  {
+    title: 'NexChat Chrome Extension',
+    description: 'AI-powered chat assistant for browser productivity',
+    tags: ['AI', 'Chrome Extension'],
+    status: 'building',
+  },
+  {
+    title: 'ICMS',
+    description: 'Integrated Criminal Management System for law enforcement',
+    tags: ['Python', 'Database'],
+    status: 'live',
+  },
+  {
+    title: 'Second Brain System',
+    description: 'Obsidian + Discord bot + Groq for knowledge management',
+    tags: ['AI', 'Productivity'],
+    status: 'concept',
+  },
+]
+
+// TODO: Replace with actual blog posts from Sanity
+const latestPosts = [
+  {
+    title: 'The Future of AI in Education',
+    excerpt: 'Exploring how artificial intelligence is transforming learning environments.',
+    date: '2024-01-15',
+    readingTime: 5,
+  },
+  {
+    title: 'Building My First Chrome Extension',
+    excerpt: 'A journey through creating NexChat and the lessons learned.',
+    date: '2024-01-10',
+    readingTime: 8,
+  },
+  {
+    title: 'Why I Chose Astro for My Portfolio',
+    excerpt: 'Performance, simplicity, and the developer experience.',
+    date: '2024-01-05',
+    readingTime: 4,
+  },
+]
+
+const focusAreas = [
+  'AI & Machine Learning',
+  'Writing & Ideas',
+  'Building Products',
+  'Content Creation',
+]
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Rohail — Home">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-bg py-20 md:py-28">
+    <!-- Radial gradient behind photo -->
+    <div class="absolute left-0 top-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-accent/5 blur-3xl md:left-10" />
+
+    <div class="relative mx-auto max-w-7xl px-6">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+        <!-- Photo (Left) -->
+        <div class="flex justify-center md:justify-start">
+          <div class="relative h-[280px] w-[280px] overflow-hidden rounded-2xl bg-surface shadow-lg">
+            <!-- TODO: Replace with actual photo -->
+            <div class="flex h-full w-full items-center justify-center bg-surface">
+              <span class="text-muted">Photo Placeholder</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content (Right) -->
+        <div class="text-center md:text-left">
+          <h1 class="font-display text-5xl font-bold tracking-tight md:text-7xl">
+            Rohail
+          </h1>
+          <p class="mt-4 text-xl text-muted md:text-2xl">
+            Building with AI. Writing what matters.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-muted md:text-lg">
+            AI student at NUTech Islamabad. Building products, writing about technology,
+            and exploring the future of software.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
+            <a
+              href="/projects"
+              class="rounded-full bg-accent px-6 py-3 text-sm font-medium text-surface transition-colors hover:bg-accent/90"
+            >
+              View Projects
+            </a>
+            <a
+              href="/blog"
+              class="rounded-full border border-border px-6 py-3 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent"
+            >
+              Read Blog
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Teaser -->
+  <section class="py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="font-display text-3xl font-bold md:text-4xl">What I'm Building</h2>
+      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {featuredProjects.map(project => (
+          <div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
+            <div class="mb-3 flex items-center gap-2">
+              <span class="rounded-full bg-tag px-3 py-1 text-xs font-medium text-accent">
+                {project.status}
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-semibold">{project.title}</h3>
+            <p class="mt-2 text-sm text-muted">{project.description}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {project.tags.map(tag => (
+                <span class="rounded-full bg-tag px-2 py-1 text-xs text-accent">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8">
+        <a
+          href="/projects"
+          class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
+        >
+          View all projects →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Writing Teaser -->
+  <section class="py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="font-display text-3xl font-bold md:text-4xl">From the Blog</h2>
+      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {latestPosts.map(post => (
+          <div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
+            <h3 class="font-display text-xl font-semibold">{post.title}</h3>
+            <p class="mt-2 text-sm text-muted">{post.excerpt}</p>
+            <div class="mt-4 flex items-center gap-4 text-xs text-muted">
+              <span>{post.date}</span>
+              <span>·</span>
+              <span>{post.readingTime} min read</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8">
+        <a
+          href="/blog"
+          class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
+        >
+          Read all posts →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Teaser -->
+  <section class="py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+        <div>
+          <h2 class="font-display text-3xl font-bold md:text-4xl">About Me</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted">
+            I'm an AI student at NUTech Islamabad with a passion for building products
+            and writing about technology. I believe in the power of AI to transform
+            industries and am constantly learning, experimenting, and creating.
+          </p>
+          <div class="mt-6">
+            <a
+              href="/about"
+              class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
+            >
+              More about me →
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-display text-lg font-semibold">Currently Focused On</h3>
+          <ul class="mt-4 space-y-2">
+            {focusAreas.map(area => (
+              <li class="flex items-center gap-2 text-sm text-muted">
+                <span class="h-1.5 w-1.5 rounded-full bg-accent" />
+                {area}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
