@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+// TODO: Replace with actual email
+const email = 'your.email@example.com'
+---
+
+<BaseLayout title="Rohail — Products">
+  <section class="py-20 md:py-28">
+    <div class="mx-auto max-w-2xl px-6 text-center">
+      <!-- Coming Soon Badge -->
+      <div class="mb-8 inline-flex items-center gap-2 rounded-full bg-tag px-4 py-2">
+        <span class="h-2 w-2 animate-pulse rounded-full bg-accent" />
+        <span class="text-sm font-medium text-accent">Coming Soon</span>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="font-display text-4xl font-bold md:text-5xl">Products</h1>
+
+      <!-- Subtext -->
+      <p class="mt-4 text-lg text-muted md:text-xl">
+        Things I'm building for real people. Coming soon.
+      </p>
+
+      <!-- Email Signup -->
+      <div class="mt-12">
+        <p class="mb-4 text-sm text-muted">
+          Get notified when I launch something new.
+        </p>
+        <form
+          action={`mailto:${email}?subject=Product Launch Notification`}
+          method="post"
+          class="mx-auto flex max-w-md gap-3"
+        >
+          <input
+            type="email"
+            placeholder="Enter your email"
+            required
+            class="flex-1 rounded-full border border-border bg-surface px-5 py-3 text-sm text-text placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+          />
+          <button
+            type="submit"
+            class="rounded-full bg-accent px-6 py-3 text-sm font-medium text-surface transition-colors hover:bg-accent/90"
+          >
+            Notify Me
+          </button>
+        </form>
+        <p class="mt-3 text-xs text-muted">
+          No spam, ever. Just product updates.
+        </p>
+      </div>
+
+      <!-- What's Coming Teaser -->
+      <div class="mt-16 rounded-2xl border border-border bg-surface p-8 text-left">
+        <h2 class="font-display text-xl font-semibold">What I'm Working On</h2>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3 text-sm text-muted">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+            <span>AI-powered productivity tools for developers</span>
+          </li>
+          <li class="flex items-start gap-3 text-sm text-muted">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+            <span>Knowledge management systems with smart search</span>
+          </li>
+          <li class="flex items-start gap-3 text-sm text-muted">
+            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+            <span>Browser extensions for better workflows</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
