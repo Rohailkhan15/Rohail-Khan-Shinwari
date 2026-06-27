@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import BlogCard from '../../components/BlogCard.astro'
+import { getAllPosts, type BlogPost } from '../../lib/sanity'
+
+const categories = ['All', 'Essay', 'Build Log', 'Research', 'Micro-thought'] as const
+
+let currentCategory: typeof categories[number] = 'All'
+
+const allPosts = await getAllPosts()
+
+const filteredPosts = currentCategory === 'All' 
+  ? allPosts 
+  : allPosts.filter(post => post.category === currentCategory)
+---
+
+<BaseLayout title="Rohail — Blog">
+  <section class="py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <h1 class="font-display text-3xl font-bold md:text-4xl">Blog</h1>
+
+      <!-- Category Filter -->
+      <div class="mt-8 flex flex-wrap gap-2">
+        {categories.map(category => (
+          <button
+            class={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              currentCategory === category
+                ? 'bg-accent text-surface'
+                : 'bg-surface text-muted hover:text-text'
+            }`}
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <!-- Posts Grid -->
+      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {filteredPosts.map(post => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+
+      <!-- Empty State -->
+      {filteredPosts.length === 0 && (
+        <div class="mt-12 text-center">
+          <p class="text-muted">No posts found in this category.</p>
+        </div>
+      )}
+
+      <!-- No Posts State (when Sanity has no content yet) -->
+      {allPosts.length === 0 && (
+        <div class="mt-12 rounded-2xl border border-border bg-surface p-8 text-center">
+          <p class="text-muted">
+            No blog posts yet. Add content in your Sanity CMS to see them here.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll('[data-category]')
+  const cards = document.querySelectorAll('[data-post-category]')
+  const emptyState = document.getElementById('empty-state')
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Update button styles
+      buttons.forEach(b => {
+        b.classList.remove('bg-accent', 'text-surface')
+        b.classList.add('bg-surface', 'text-muted')
+      })
+      button.classList.remove('bg-surface', 'text-muted')
+      button.classList.add('bg-accent', 'text-surface')
+
+      // Filter posts
+      const category = button.getAttribute('data-category')
+      let visibleCount = 0
+
+      cards.forEach(card => {
+        if (category === 'All') {
+          card.classList.remove('hidden')
+          visibleCount++
+        } else {
+          const postCategory = card.getAttribute('data-post-category')
+          if (postCategory === category) {
+            card.classList.remove('hidden')
+            visibleCount++
+          } else {
+            card.classList.add('hidden')
+          }
+        }
+      })
+
+      // Show/hide empty state
+      if (visibleCount === 0) {
+        emptyState?.classList.remove('hidden')
+      } else {
+        emptyState?.classList.add('hidden')
+      }
+    })
+  })
+</script>
