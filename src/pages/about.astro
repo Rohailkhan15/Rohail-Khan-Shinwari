@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import SectionHeading from '../components/SectionHeading.astro'
 
 const whatIDo = [
   {
@@ -31,8 +32,7 @@ const currently = [
   'Exploring large language models and their applications',
 ]
 
-// TODO: Replace with actual email
-const email = 'your.email@example.com'
+const email = 'Shinwarir098@gmail.com'
 ---
 
 <BaseLayout title="Rohail — About">
@@ -69,7 +69,7 @@ const email = 'your.email@example.com'
   <!-- My Story -->
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-3xl px-6">
-      <h2 class="font-display text-3xl font-bold md:text-4xl">My Story</h2>
+      <SectionHeading>My Story</SectionHeading>
       <div class="mt-8 space-y-6 text-base leading-relaxed text-muted">
         <p>
           I'm an AI student at NUTech Islamabad, where I'm diving deep into machine learning,
@@ -99,7 +99,7 @@ const email = 'your.email@example.com'
   <!-- What I Do -->
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-7xl px-6">
-      <h2 class="font-display text-3xl font-bold md:text-4xl">What I Do</h2>
+      <SectionHeading>What I Do</SectionHeading>
       <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
         {whatIDo.map(item => (
           <div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
@@ -115,7 +115,7 @@ const email = 'your.email@example.com'
   <!-- Currently -->
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-3xl px-6">
-      <h2 class="font-display text-3xl font-bold md:text-4xl">Currently</h2>
+      <SectionHeading>Currently</SectionHeading>
       <ul class="mt-8 space-y-4">
         {currently.map(item => (
           <li class="flex items-start gap-3 text-base text-muted">
@@ -130,7 +130,7 @@ const email = 'your.email@example.com'
   <!-- Reach Me -->
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-3xl px-6">
-      <h2 class="font-display text-3xl font-bold md:text-4xl">Reach Me</h2>
+      <SectionHeading>Reach Me</SectionHeading>
       <div class="mt-8">
         <a
           href={`mailto:${email}`}

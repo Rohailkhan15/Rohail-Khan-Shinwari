@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import SectionHeading from '../components/SectionHeading.astro'
 
 // TODO: Replace with actual project data from src/data/projects.ts
 const featuredProjects = [
@@ -105,7 +106,7 @@ const focusAreas = [
   <!-- Featured Projects Teaser -->
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-7xl px-6">
-      <h2 class="font-display text-3xl font-bold md:text-4xl">What I'm Building</h2>
+      <SectionHeading>What I'm Building</SectionHeading>
       <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
         {featuredProjects.map(project => (
           <div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
@@ -140,7 +141,7 @@ const focusAreas = [
   <!-- Latest Writing Teaser -->
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-7xl px-6">
-      <h2 class="font-display text-3xl font-bold md:text-4xl">From the Blog</h2>
+      <SectionHeading>From the Blog</SectionHeading>
       <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
         {latestPosts.map(post => (
           <div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
@@ -170,7 +171,7 @@ const focusAreas = [
     <div class="mx-auto max-w-7xl px-6">
       <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
         <div>
-          <h2 class="font-display text-3xl font-bold md:text-4xl">About Me</h2>
+          <SectionHeading>About Me</SectionHeading>
           <p class="mt-4 text-base leading-relaxed text-muted">
             I'm an AI student at NUTech Islamabad with a passion for building products
             and writing about technology. I believe in the power of AI to transform
