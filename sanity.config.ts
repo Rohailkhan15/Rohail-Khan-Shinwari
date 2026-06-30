@@ -5,8 +5,8 @@ import { codeInput } from '@sanity/code-input'
 import { schemaTypes } from './sanity/schemas'
 
 export default defineConfig({
-  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-  dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+  projectId: 'dlw4tt0k',
+  dataset: 'production',
   title: 'Rohail Khan Shinwari Website',
   basePath: '/studio',
   plugins: [

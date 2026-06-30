@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { getPostBySlug, getAllPosts, urlFor, type BlogPost } from '../../lib/sanity'
-import { PortableText } from '@portabletext/to-html'
+import { toHTML } from '@portabletext/to-html'
 
 export async function getStaticPaths() {
   const posts = await getAllPosts()
@@ -48,7 +48,7 @@ const portableTextComponents = {
   },
 }
 
-const bodyHtml = PortableText(post.body, { components: portableTextComponents })
+const bodyHtml = toHTML(post.body, { components: portableTextComponents })
 ---
 
 <BaseLayout title={`${post.title} — Blog`}>
