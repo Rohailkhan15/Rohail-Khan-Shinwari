@@ -7,15 +7,15 @@ export async function getStaticPaths() {
   const posts = await getAllPosts()
   return posts.map((post) => ({
     params: { slug: post.slug.current },
-    props: { post },
   }))
 }
 
-interface Props {
-  post: BlogPost
-}
+const { slug } = Astro.params
+const post = await getPostBySlug(slug)
 
-const { post } = Astro.props
+if (!post) {
+  return Astro.redirect('/404')
+}
 
 const categoryColors = {
   'Essay': 'bg-blue-100 text-blue-700',
@@ -32,6 +32,12 @@ const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
 })
 
 const portableTextComponents = {
+  block: {
+    normal: ({ children }: any) => `<p class="mb-4">${children}</p>`,
+    h1: ({ children }: any) => `<h1 class="text-3xl font-bold mb-4">${children}</h1>`,
+    h2: ({ children }: any) => `<h2 class="text-2xl font-bold mb-4">${children}</h2>`,
+    h3: ({ children }: any) => `<h3 class="text-xl font-bold mb-4">${children}</h3>`,
+  },
   types: {
     image: ({ value }: any) => {
       const imgUrl = urlFor(value).url()
@@ -48,7 +54,7 @@ const portableTextComponents = {
   },
 }
 
-const bodyHtml = toHTML(post.body, { components: portableTextComponents })
+const bodyHtml = post.body ? toHTML(post.body, { components: portableTextComponents }) : '<p>No content</p>'
 ---
 
 <BaseLayout title={`${post.title} — Blog`}>
@@ -109,13 +115,15 @@ const bodyHtml = toHTML(post.body, { components: portableTextComponents })
       </div>
 
       <!-- Tags -->
-      <div class="mt-12 flex flex-wrap gap-2">
-        {post.tags.map(tag => (
-          <span class="rounded-full bg-tag px-3 py-1 text-sm text-accent">
-            #{tag}
-          </span>
-        ))}
-      </div>
+      {post.tags && post.tags.length > 0 && (
+        <div class="mt-12 flex flex-wrap gap-2">
+          {post.tags.map(tag => (
+            <span class="rounded-full bg-tag px-3 py-1 text-sm text-accent">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
 
       <!-- Share Links -->
       <div class="mt-8 border-t border-border pt-8">

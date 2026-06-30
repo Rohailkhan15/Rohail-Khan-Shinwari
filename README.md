@@ -1,29 +1,30 @@
-# Astro Starter Kit: Minimal
+# Rohail Khan Shinwari — Personal Website
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A personal portfolio website built with Astro and Sanity CMS, featuring a blog and projects showcase.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Features
 
-## 🚀 Project Structure
+- **Blog System**: Powered by Sanity CMS with category-based filtering (Essay, Build Log, Research, Micro-thought)
+- **Projects Showcase**: Display of personal projects with detailed information
+- **Responsive Design**: Mobile-first design with Tailwind CSS
+- **Modern UI**: Clean, minimalist aesthetic with smooth interactions
+- **Type Safety**: Full TypeScript support
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📁 Project Structure
 
 ```text
 /
-├── public/
+├── public/          # Static assets (images, favicon, robots.txt)
+├── sanity/          # Sanity CMS configuration and schemas
+│   └── schemas/     # Content models (blogPost, etc.)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/  # Reusable Astro components
+│   ├── layouts/     # Page layouts
+│   ├── lib/         # Utility functions and Sanity client
+│   ├── pages/       # Route pages (blog, projects, etc.)
+│   └── data/        # Static data (projects)
 └── package.json
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
 
 ## 🧞 Commands
 
@@ -36,8 +37,15 @@ All commands are run from the root of the project, from a terminal:
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npx sanity dev`          | Start Sanity Studio for content management       |
 
-## 👀 Want to learn more?
+## 🛠️ Tech Stack
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Framework**: Astro
+- **Styling**: Tailwind CSS
+- **CMS**: Sanity
+- **Language**: TypeScript
+
+## � Content Management
+
+Blog posts and other content are managed through Sanity Studio. Run `npx sanity dev` to start the studio and manage your content.

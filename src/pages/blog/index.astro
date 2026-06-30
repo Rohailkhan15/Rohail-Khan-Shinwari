@@ -1,18 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import BlogCard from '../../components/BlogCard.astro'
-import SectionHeading from '../../components/SectionHeading.astro'
-import { getAllPosts, type BlogPost } from '../../lib/sanity'
+import { getAllPosts } from '../../lib/sanity'
 
 const categories = ['All', 'Essay', 'Build Log', 'Research', 'Micro-thought'] as const
 
-let currentCategory: typeof categories[number] = 'All'
-
 const allPosts = await getAllPosts()
-
-const filteredPosts = currentCategory === 'All' 
-  ? allPosts 
-  : allPosts.filter(post => post.category === currentCategory)
 ---
 
 <BaseLayout title="Rohail Khan Shinwari — Blog">
@@ -38,17 +31,15 @@ const filteredPosts = currentCategory === 'All'
 
       <!-- Posts Grid -->
       <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {filteredPosts.map(post => (
+        {allPosts.map(post => (
           <BlogCard post={post} />
         ))}
       </div>
 
       <!-- Empty State -->
-      {filteredPosts.length === 0 && (
-        <div class="mt-12 text-center">
-          <p class="text-muted">No posts found in this category.</p>
-        </div>
-      )}
+      <div id="empty-state" class="mt-12 text-center hidden">
+        <p class="text-muted">No posts found in this category.</p>
+      </div>
 
       <!-- No Posts State (when Sanity has no content yet) -->
       {allPosts.length === 0 && (
