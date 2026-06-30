@@ -1,5 +1,3 @@
 import blogPost from './blogPost'
 
-export const schema = {
-  types: [blogPost],
-}
+export const schemaTypes = [blogPost]
