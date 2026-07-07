@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rohail - Built for the future.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#b4c5ff",
+                      "on-primary-container": "#eeefff",
+                      "background": "#faf8ff",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-container": "#bc4800",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#e1e2ed",
+                      "on-secondary-fixed": "#25005a",
+                      "surface-variant": "#e1e2ed",
+                      "inverse-on-surface": "#f0f0fb",
+                      "error": "#ba1a1a",
+                      "on-secondary": "#ffffff",
+                      "secondary-container": "#8a4cfc",
+                      "primary": "#004ac6",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "surface-tint": "#0053db",
+                      "on-surface": "#191b23",
+                      "on-tertiary-container": "#ffede6",
+                      "tertiary-fixed": "#ffdbcd",
+                      "on-secondary-container": "#fffbff",
+                      "outline": "#737686",
+                      "secondary-fixed-dim": "#d2bbff",
+                      "tertiary": "#943700",
+                      "surface-container": "#ededf9",
+                      "surface-container-low": "#f3f3fe",
+                      "outline-variant": "#c3c6d7",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed": "#00174b",
+                      "on-background": "#191b23",
+                      "surface": "#faf8ff",
+                      "on-surface-variant": "#434655",
+                      "primary-fixed": "#dbe1ff",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "on-secondary-fixed-variant": "#5a00c6",
+                      "on-tertiary-fixed": "#360f00",
+                      "primary-container": "#2563eb",
+                      "surface-dim": "#d9d9e5",
+                      "surface-bright": "#faf8ff",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "secondary": "#712ae2",
+                      "secondary-fixed": "#eaddff",
+                      "inverse-surface": "#2e3039",
+                      "surface-container-high": "#e7e7f3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "content-max-width": "800px",
+                      "section-gap": "120px",
+                      "grid-margin": "24px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Space Grotesk"
+                      ],
+                      "label-caps": [
+                              "JetBrains Mono"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Space Grotesk"
+                      ],
+                      "code-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-sm": [
+                              "Space Grotesk"
+                      ],
+                      "display-lg-mobile": [
+                              "Space Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "code-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--color-primary, #004ac6);
+            transition: width 0.4s ease-out;
+        }
+        .reveal.active .animated-underline::after,
+        .animated-underline:hover::after {
+            width: 100%;
+        }
+        
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background-color: var(--color-primary, #004ac6);
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 4px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(circle, rgba(0,74,198,0.05) 0%, rgba(250,248,255,0) 70%);
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant/10 dark:border-outline/10">
+<div class="flex justify-between items-center px-grid-margin py-4 max-w-[1200px] mx-auto">
+<a class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface hover:opacity-80 transition-opacity" href="/">Rohail</a>
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="font-body-md text-body-md md:font-headline-sm md:text-headline-sm text-primary dark:text-inverse-primary relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[3px] after:bg-primary dark:after:bg-inverse-primary after:rounded-full" href="/">Home</a>
+<a class="font-body-md text-body-md md:font-headline-sm md:text-headline-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/about">About</a>
+<a class="font-body-md text-body-md md:font-headline-sm md:text-headline-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/projects">Projects</a>
+<a class="font-body-md text-body-md md:font-headline-sm md:text-headline-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/blog">Blog</a>
+<a class="font-body-md text-body-md md:font-headline-sm md:text-headline-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors" href="/products">Products</a>
+</nav>
+<button class="hidden md:inline-flex bg-primary text-on-primary px-6 py-2 rounded-full font-body-md text-body-md hover:bg-on-primary-fixed-variant transition-colors items-center gap-2">
+                Let's Connect
+                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+</button>
+<!-- Mobile Menu Toggle (Simplified for design output) -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-section-gap">
+<!-- Hero Section -->
+<section class="max-w-[1200px] mx-auto px-grid-margin py-section-gap min-h-[819px] flex items-center">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center w-full">
+<!-- Left: Photo -->
+<div class="lg:col-span-5 flex justify-center lg:justify-start relative mb-12 lg:mb-0 reveal">
+<div class="absolute inset-0 hero-gradient scale-[1.5] -z-10"></div>
+<div class="w-[280px] h-[280px] rounded-full border border-outline-variant/20 p-2 overflow-hidden bg-surface">
+<img class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500" data-alt="A striking portrait of a young male AI developer in a minimalist studio setting. He is looking off-camera with a confident, thoughtful expression. The lighting is high-key and pristine white, creating a clean, modern aesthetic. The background is a soft, completely pure white. The overall mood is professional, technical, and forward-looking, perfectly matching a high-presence minimalist portfolio design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQEwEIgsyiAQfgTpfie8QnJ16pyoxqShuWXgjrPQWic4EDF_weFkqf4XKa5EMBUApe8-Dpb7WQuRMvwMOYpjzk3hJcEMX5sPp9Vf3cNsDaJsjVqpyLhRqV3hsR-H1QwSP0F77VRVYjkW-2sbMdI7Zd2_osFku28xqqvspffMJaQKZhc3nMAAmi7darQn2nATotMXnPRG8XBW1wZutwoh4ZBKAamozibRB7sVdj2EN4-XFHq0k5LqQGCCv68YRfDRx8vDQQjxQNdjR_"/>
+</div>
+</div>
+<!-- Right: Content -->
+<div class="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left reveal" style="transition-delay: 0.2s;">
+<div class="font-label-caps text-label-caps text-primary bg-primary-container/10 px-3 py-1 rounded-full mb-6 border border-primary/20 inline-block">
+                        AI ENGINEER &amp; DESIGNER
+                    </div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-4">
+                        Hi, I'm Rohail.
+                    </h1>
+<h2 class="font-headline-md text-headline-md text-on-surface-variant mb-6 h-[40px]" id="typewriter-container">
+<span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10">
+                        I bridge the gap between complex machine learning models and intuitive human interfaces. Currently exploring the intersection of generative AI and minimalist design systems.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+<a class="inline-flex justify-center items-center bg-primary text-on-primary px-8 py-4 rounded-full font-body-md text-body-md hover:bg-on-primary-fixed-variant transition-colors group" href="/projects">
+                            View Projects
+                            <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</a>
+<a class="inline-flex justify-center items-center bg-transparent border-2 border-primary text-primary px-8 py-4 rounded-full font-body-md text-body-md hover:bg-primary/5 transition-colors" href="/blog">
+                            Read Blog
+                        </a>
+</div>
+</div>
+</div>
+</section>
+<!-- What I'm Building -->
+<section class="max-w-[1200px] mx-auto px-grid-margin py-section-gap reveal">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-12">
+<span class="animated-underline">What I'm Building</span>
+</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Project Card 1 -->
+<a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="#">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">NeuroCanvas</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">A visual node-based editor for orchestrating local LLM pipelines and chaining prompts without code.</p>
+<div class="flex gap-2 mt-auto">
+<span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">React</span>
+<span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Python</span>
+</div>
+</a>
+<!-- Project Card 2 -->
+<a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="#">
+<div class="absolute bottom-0 right-0 w-32 h-32 border border-outline-variant/20 rounded-tl-full -mb-16 -mr-16 transition-transform group-hover:scale-110"></div>
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">data_object</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Syntax UI</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">A minimalist design system and component library built specifically for high-density technical dashboards.</p>
+<div class="flex gap-2 mt-auto">
+<span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Tailwind</span>
+<span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Figma</span>
+</div>
+</a>
+<!-- Project Card 3 -->
+<a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="#">
+<div class="absolute top-1/2 left-1/2 w-48 h-48 bg-secondary/5 rounded-full -translate-x-1/2 -translate-y-1/2 scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">robot_2</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Echo Bot</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">An autonomous research agent that traverses documentation to generate synthesized context for coding tasks.</p>
+<div class="flex gap-2 mt-auto">
+<span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">LangChain</span>
+<span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">TypeScript</span>
+</div>
+</div>
+</a>
+</div>
+</section>
+<!-- About Teaser -->
+<section class="max-w-[1200px] mx-auto px-grid-margin py-section-gap reveal">
+<div class="bg-surface-container-low rounded-2xl p-8 md:p-12 border border-outline-variant/10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">
+<span class="animated-underline">The Philosophy</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
+                            I believe that the most advanced technology should feel invisible. My work focuses on stripping away the superficial complexity of AI tools to expose clear, actionable interfaces. Design isn't just how it looks; it's how the system communicates its intent to the user.
+                        </p>
+<a class="inline-flex items-center text-primary font-body-md text-body-md hover:underline group" href="/about">
+                            More about me
+                            <span class="material-symbols-outlined ml-1 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/10 font-code-sm text-code-sm">
+<div class="text-outline mb-4">/* Current Focus */</div>
+<ul class="space-y-3 text-on-surface-variant">
+<li class="flex items-start">
+<span class="text-primary mr-2">→</span>
+<span>Optimizing local RAG pipelines for lower latency.</span>
+</li>
+<li class="flex items-start">
+<span class="text-primary mr-2">→</span>
+<span>Designing "High-Presence Minimalist" UI patterns.</span>
+</li>
+<li class="flex items-start">
+<span class="text-primary mr-2">→</span>
+<span>Studying the typography of technical documentation.</span>
+</li>
+<li class="flex items-start">
+<span class="text-primary mr-2">→</span>
+<span>Building robust, self-healing web scrapers.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-grid-margin max-w-[1200px] mx-auto">
+<div class="flex flex-col gap-4">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface dark:text-inverse-on-surface">Rohail</div>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant max-w-xs">
+                    Building the interfaces for the next generation of intelligent systems.
+                </p>
+<div class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant mt-auto">
+                    © 2024 Rohail. Built for the future.
+                </div>
+</div>
+<div class="flex flex-col gap-3 md:pl-12">
+<div class="font-label-caps text-label-caps text-on-surface dark:text-inverse-on-surface mb-2">NAVIGATION</div>
+<a class="font-body-md text-body-md text-primary dark:text-inverse-primary font-semibold hover:text-primary dark:hover:text-inverse-primary transition-colors opacity-80 hover:opacity-100" href="/">Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors opacity-80 hover:opacity-100" href="/about">About</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors opacity-80 hover:opacity-100" href="/projects">Projects</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors opacity-80 hover:opacity-100" href="/blog">Blog</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors opacity-80 hover:opacity-100" href="/products">Products</a>
+</div>
+<div class="flex flex-col gap-3">
+<div class="font-label-caps text-label-caps text-on-surface dark:text-inverse-on-surface mb-2">CONNECT</div>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors opacity-80 hover:opacity-100 flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                    Contact
+                </a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors opacity-80 hover:opacity-100 flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[18px]">code</span>
+                    GitHub
+                </a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary transition-colors opacity-80 hover:opacity-100 flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[18px]">connect_without_contact</span>
+                    LinkedIn
+                </a>
+</div>
+</div>
+</footer>
+<script>
+        // Scroll Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger on load
+        reveal();
+
+        // Typewriter Effect Logic
+        const phrases = [
+            "Building intelligent interfaces.",
+            "Designing systemic clarity.",
+            "Engineering the future."
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingDelay = 100;
+        let erasingDelay = 50;
+        let newPhraseDelay = 2000;
+        
+        const textElement = document.getElementById('typewriter-text');
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let delay = isDeleting ? erasingDelay : typingDelay;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                delay = newPhraseDelay;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                delay = 500;
+            }
+
+            setTimeout(type, delay);
+        }
+
+        // Start typewriter after a short delay
+        setTimeout(type, 1000);
+    </script>
+</body></html>
