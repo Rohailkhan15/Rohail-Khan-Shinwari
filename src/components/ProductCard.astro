@@ -1,11 +1,11 @@
 ---
-import type { Project } from '../lib/sanity'
+import type { Product } from '../lib/sanity'
 
 interface Props {
-  project: Project
+  product: Product
 }
 
-const { project } = Astro.props
+const { product } = Astro.props
 
 const statusColors = {
   live: 'bg-green-100 text-green-700',
@@ -14,23 +14,28 @@ const statusColors = {
 }
 ---
 
-<div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md" data-status={project.status}>
+<div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md" data-status={product.status}>
   <!-- Status Badge -->
   <div class="mb-3 flex items-center gap-2">
-    <span class={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[project.status]}`}>
-      {project.status}
+    <span class={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[product.status]}`}>
+      {product.status}
     </span>
+    {product.price && (
+      <span class="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+        {product.price}
+      </span>
+    )}
   </div>
 
   <!-- Title -->
-  <h3 class="font-display text-xl font-semibold">{project.title}</h3>
+  <h3 class="font-display text-xl font-semibold">{product.title}</h3>
 
   <!-- Description -->
-  <p class="mt-2 text-sm text-muted">{project.description}</p>
+  <p class="mt-2 text-sm text-muted">{product.description}</p>
 
   <!-- Tags -->
   <div class="mt-4 flex flex-wrap gap-2">
-    {(project.tags || []).map(tag => (
+    {(product.tags || []).map(tag => (
       <span class="rounded-full bg-tag px-2 py-1 text-xs text-accent">
         {tag}
       </span>
@@ -39,24 +44,24 @@ const statusColors = {
 
   <!-- Links -->
   <div class="mt-4 flex gap-4">
-    {project.github && (
+    {product.productUrl && (
       <a
-        href={project.github}
+        href={product.productUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
+      >
+        View Product
+      </a>
+    )}
+    {product.github && (
+      <a
+        href={product.github}
         target="_blank"
         rel="noopener noreferrer"
         class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
       >
         GitHub
-      </a>
-    )}
-    {project.demo && (
-      <a
-        href={project.demo}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
-      >
-        Live Demo
       </a>
     )}
   </div>

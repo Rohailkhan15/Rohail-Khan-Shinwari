@@ -32,6 +32,47 @@ export interface BlogPost {
   readingTime?: number
 }
 
+export interface Project {
+  _id: string
+  title: string
+  slug: { current: string }
+  description: string
+  longDescription: string
+  coverImage?: {
+    asset: {
+      _ref: string
+      _type: string
+    }
+  }
+  status: 'live' | 'building' | 'concept'
+  tags: string[]
+  github?: string
+  demo?: string
+  featured: boolean
+  date: string
+}
+
+export interface Product {
+  _id: string
+  title: string
+  slug: { current: string }
+  description: string
+  longDescription: string
+  coverImage?: {
+    asset: {
+      _ref: string
+      _type: string
+    }
+  }
+  status: 'live' | 'building' | 'concept'
+  tags: string[]
+  productUrl?: string
+  github?: string
+  featured: boolean
+  date: string
+  price?: string
+}
+
 export async function getAllPosts(): Promise<BlogPost[]> {
   const query = `*[_type == "blogPost"] | order(publishedAt desc) {
     _id,
@@ -77,6 +118,84 @@ export async function getPostsByCategory(category: string): Promise<BlogPost[]> 
     tags,
     readingTime
   }`
-  
+
   return await sanityClient.fetch(query, { category })
+}
+
+export async function getAllProjects(): Promise<Project[]> {
+  const query = `*[_type == "project"] | order(date desc) {
+    _id,
+    title,
+    slug,
+    description,
+    longDescription,
+    coverImage,
+    status,
+    tags,
+    github,
+    demo,
+    featured,
+    date
+  }`
+
+  return await sanityClient.fetch(query)
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  const query = `*[_type == "project" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description,
+    longDescription,
+    coverImage,
+    status,
+    tags,
+    github,
+    demo,
+    featured,
+    date
+  }`
+
+  return await sanityClient.fetch(query, { slug })
+}
+
+export async function getAllProducts(): Promise<Product[]> {
+  const query = `*[_type == "product"] | order(date desc) {
+    _id,
+    title,
+    slug,
+    description,
+    longDescription,
+    coverImage,
+    status,
+    tags,
+    productUrl,
+    github,
+    featured,
+    date,
+    price
+  }`
+
+  return await sanityClient.fetch(query)
+}
+
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const query = `*[_type == "product" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description,
+    longDescription,
+    coverImage,
+    status,
+    tags,
+    productUrl,
+    github,
+    featured,
+    date,
+    price
+  }`
+
+  return await sanityClient.fetch(query, { slug })
 }

@@ -1,50 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import SectionHeading from '../components/SectionHeading.astro'
+import { getAllProjects, getAllPosts } from '../lib/sanity'
 
-// TODO: Replace with actual project data from src/data/projects.ts
-const featuredProjects = [
-  {
-    title: 'NexChat Chrome Extension',
-    description: 'AI-powered chat assistant for browser productivity',
-    tags: ['AI', 'Chrome Extension'],
-    status: 'building',
-  },
-  {
-    title: 'ICMS',
-    description: 'Integrated Criminal Management System for law enforcement',
-    tags: ['Python', 'Database'],
-    status: 'live',
-  },
-  {
-    title: 'Second Brain System',
-    description: 'Obsidian + Discord bot + Groq for knowledge management',
-    tags: ['AI', 'Productivity'],
-    status: 'concept',
-  },
-]
+const allProjects = await getAllProjects()
+const featuredProjects = (allProjects || []).filter(p => p.featured).slice(0, 3)
 
-// TODO: Replace with actual blog posts from Sanity
-const latestPosts = [
-  {
-    title: 'The Future of AI in Education',
-    excerpt: 'Exploring how artificial intelligence is transforming learning environments.',
-    date: '2024-01-15',
-    readingTime: 5,
-  },
-  {
-    title: 'Building My First Chrome Extension',
-    excerpt: 'A journey through creating NexChat and the lessons learned.',
-    date: '2024-01-10',
-    readingTime: 8,
-  },
-  {
-    title: 'Why I Chose Astro for My Portfolio',
-    excerpt: 'Performance, simplicity, and the developer experience.',
-    date: '2024-01-05',
-    readingTime: 4,
-  },
-]
+const allPosts = await getAllPosts()
+const latestPosts = (allPosts || []).slice(0, 3)
 
 const focusAreas = [
   'AI & Machine Learning',
@@ -109,26 +72,32 @@ const focusAreas = [
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-7xl px-6">
       <SectionHeading>What I'm Building</SectionHeading>
-      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-        {featuredProjects.map(project => (
-          <div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
-            <div class="mb-3 flex items-center gap-2">
-              <span class="rounded-full bg-tag px-3 py-1 text-xs font-medium text-accent">
-                {project.status}
-              </span>
-            </div>
-            <h3 class="font-display text-xl font-semibold">{project.title}</h3>
-            <p class="mt-2 text-sm text-muted">{project.description}</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {project.tags.map(tag => (
-                <span class="rounded-full bg-tag px-2 py-1 text-xs text-accent">
-                  {tag}
+      {featuredProjects && featuredProjects.length > 0 ? (
+        <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {featuredProjects.map(project => (
+            <a href={`/projects/${project.slug.current}`} class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="rounded-full bg-tag px-3 py-1 text-xs font-medium text-accent">
+                  {project.status}
                 </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+              </div>
+              <h3 class="font-display text-xl font-semibold">{project.title}</h3>
+              <p class="mt-2 text-sm text-muted">{project.description}</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {(project.tags || []).map(tag => (
+                  <span class="rounded-full bg-tag px-2 py-1 text-xs text-accent">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="mt-8 rounded-2xl border border-border bg-surface p-8 text-center">
+          <p class="text-muted">No featured projects yet. Add content in your Sanity CMS.</p>
+        </div>
+      )}
       <div class="mt-8">
         <a
           href="/projects"
@@ -144,19 +113,25 @@ const focusAreas = [
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-7xl px-6">
       <SectionHeading>From the Blog</SectionHeading>
-      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-        {latestPosts.map(post => (
-          <div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
-            <h3 class="font-display text-xl font-semibold">{post.title}</h3>
-            <p class="mt-2 text-sm text-muted">{post.excerpt}</p>
-            <div class="mt-4 flex items-center gap-4 text-xs text-muted">
-              <span>{post.date}</span>
-              <span>·</span>
-              <span>{post.readingTime} min read</span>
-            </div>
-          </div>
-        ))}
-      </div>
+      {latestPosts && latestPosts.length > 0 ? (
+        <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {latestPosts.map(post => (
+            <a href={`/blog/${post.slug.current}`} class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
+              <h3 class="font-display text-xl font-semibold">{post.title}</h3>
+              <p class="mt-2 text-sm text-muted">{post.excerpt}</p>
+              <div class="mt-4 flex items-center gap-4 text-xs text-muted">
+                <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                <span>·</span>
+                <span>{post.readingTime || 5} min read</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="mt-8 rounded-2xl border border-border bg-surface p-8 text-center">
+          <p class="text-muted">No blog posts yet. Add content in your Sanity CMS.</p>
+        </div>
+      )}
       <div class="mt-8">
         <a
           href="/blog"

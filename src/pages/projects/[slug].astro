@@ -1,20 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import { projects } from '../../data/projects'
-import type { Project } from '../../data/projects'
+import { getAllProjects, getProjectBySlug } from '../../lib/sanity'
+import type { Project } from '../../lib/sanity'
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const projects = (await getAllProjects()) || []
   return projects.map((project) => ({
-    params: { slug: project.slug },
-    props: { project },
+    params: { slug: project.slug.current },
   }))
 }
 
-interface Props {
-  project: Project
-}
+const { slug } = Astro.params
+const project = await getProjectBySlug(slug)
 
-const { project } = Astro.props
+if (!project) {
+  return Astro.redirect('/404')
+}
 
 const statusColors = {
   live: 'bg-green-100 text-green-700',
@@ -62,7 +63,7 @@ const statusColors = {
 
       <!-- Tags -->
       <div class="mt-6 flex flex-wrap gap-2">
-        {project.tags.map(tag => (
+        {(project.tags || []).map(tag => (
           <span class="rounded-full bg-tag px-3 py-1 text-sm text-accent">
             {tag}
           </span>

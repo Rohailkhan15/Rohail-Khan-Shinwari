@@ -1,18 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import ProjectCard from '../../components/ProjectCard.astro'
+import ProductCard from '../../components/ProductCard.astro'
 import SectionHeading from '../../components/SectionHeading.astro'
-import { getAllProjects } from '../../lib/sanity'
+import { getAllProducts } from '../../lib/sanity'
 
 const filters = ['All', 'Live', 'Building', 'Concept']
 
-const projects = (await getAllProjects()) || []
+const products = (await getAllProducts()) || []
 ---
 
-<BaseLayout title="Rohail Khan Shinwari — Projects">
+<BaseLayout title="Rohail Khan Shinwari — Products">
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-7xl px-6">
-      <h1 class="font-display text-3xl font-bold md:text-4xl">Projects</h1>
+      <h1 class="font-display text-3xl font-bold md:text-4xl">Products</h1>
 
       <!-- Filter Bar -->
       <div class="mt-8 flex flex-wrap gap-2">
@@ -30,19 +30,28 @@ const projects = (await getAllProjects()) || []
         ))}
       </div>
 
-      <!-- Projects Grid -->
+      <!-- Products Grid -->
       <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map(project => (
-          <a href={`/projects/${project.slug.current}`}>
-            <ProjectCard project={project} />
+        {products.map(product => (
+          <a href={`/products/${product.slug.current}`}>
+            <ProductCard product={product} />
           </a>
         ))}
       </div>
 
       <!-- Empty State -->
       <div id="empty-state" class="mt-12 hidden text-center">
-        <p class="text-muted">No projects found for this filter.</p>
+        <p class="text-muted">No products found for this filter.</p>
       </div>
+
+      <!-- No Products State (when Sanity has no content yet) -->
+      {products.length === 0 && (
+        <div class="mt-12 rounded-2xl border border-border bg-surface p-8 text-center">
+          <p class="text-muted">
+            No products yet. Add content in your Sanity CMS to see them here.
+          </p>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayout>
@@ -62,7 +71,7 @@ const projects = (await getAllProjects()) || []
       button.classList.remove('bg-surface', 'text-muted')
       button.classList.add('bg-accent', 'text-surface')
 
-      // Filter projects
+      // Filter products
       const filter = button.getAttribute('data-filter')
       let visibleCount = 0
 

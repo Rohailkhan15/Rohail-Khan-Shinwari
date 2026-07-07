@@ -58,5 +58,16 @@ const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
       <span>·</span>
       <span>{post.readingTime || 5} min read</span>
     </div>
+
+    <!-- Tags -->
+    {post.tags && post.tags.length > 0 && (
+      <div class="mt-4 flex flex-wrap gap-2">
+        {post.tags.map(tag => (
+          <span class="rounded-full bg-tag px-2 py-1 text-xs text-accent">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
   </div>
 </a>
