@@ -1,140 +1,92 @@
 ---
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Products', href: '/products' },
   { name: 'About', href: '/about' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Products', href: '/products' },
 ]
 ---
 
-<nav
+<header
   id="navbar"
-  class="sticky top-0 z-50 transition-all duration-300"
+  class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10 transition-all duration-300"
 >
-  <div class="mx-auto max-w-7xl px-6 py-4">
-    <div class="flex items-center justify-between">
-      <a href="/" class="font-display text-xl font-bold text-text">Rohail Khan Shinwari</a>
+  <div class="flex justify-between items-center px-6 py-4 max-w-[1200px] mx-auto md:px-6">
+    <a href="/" class="font-headline-md text-headline-md font-bold text-on-surface hover:opacity-80 transition-opacity">
+      Rohail
+    </a>
 
-      <!-- Desktop Nav -->
-      <div class="hidden items-center gap-6 md:flex">
-        {navLinks.map(link => (
-          <a
-            href={link.href}
-            class="text-sm font-medium text-muted transition-colors hover:text-text"
-          >
-            {link.name}
-          </a>
-        ))}
-        <button
-          id="connect-btn"
-          class="rounded-full bg-accent px-5 py-2 text-sm font-medium text-surface transition-colors hover:bg-accent/90"
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex gap-6 items-center">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class="font-body-md text-body-md md:font-headline-sm md:text-headline-sm text-on-surface-variant hover:text-primary transition-colors"
         >
-          Let's Connect
-        </button>
-      </div>
-
-      <!-- Mobile Hamburger -->
+          {link.name}
+        </a>
+      ))}
       <button
-        id="menu-btn"
-        class="md:hidden"
-        aria-label="Toggle menu"
+        id="connect-btn"
+        class="bg-primary text-on-primary px-6 py-2 rounded-full font-body-md text-body-md hover:bg-on-primary-fixed-variant transition-colors items-center gap-2 inline-flex"
       >
-        <svg
-          id="menu-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="text-text"
-        >
-          <line x1="4" x2="20" y1="12" y2="12" />
-          <line x1="4" x2="20" y1="6" y2="6" />
-          <line x1="4" x2="20" y1="18" y2="18" />
-        </svg>
-        <svg
-          id="close-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="hidden text-text"
-        >
-          <line x1="18" x2="6" y1="6" y2="18" />
-          <line x1="6" x2="18" y1="6" y2="18" />
-        </svg>
+        Let's Connect
+        <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
       </button>
-    </div>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      id="menu-btn"
+      class="md:hidden text-on-surface"
+      aria-label="Toggle menu"
+    >
+      <span class="material-symbols-outlined">menu</span>
+    </button>
   </div>
 
   <!-- Mobile Menu Drawer -->
   <div
     id="mobile-menu"
-    class="fixed inset-y-0 right-0 z-50 w-64 transform bg-surface shadow-lg transition-transform duration-300 md:hidden"
+    class="fixed inset-y-0 right-0 z-50 w-64 transform bg-surface shadow-lg transition-transform duration-300 md:hidden translate-x-full"
   >
     <div class="flex flex-col gap-6 p-6 pt-20">
       {navLinks.map(link => (
         <a
           href={link.href}
-          class="text-base font-medium text-muted transition-colors hover:text-text"
+          class="text-base font-medium text-on-surface-variant hover:text-primary transition-colors"
         >
           {link.name}
         </a>
       ))}
       <button
         id="mobile-connect-btn"
-        class="rounded-full bg-accent px-5 py-3 text-sm font-medium text-surface transition-colors hover:bg-accent/90"
+        class="rounded-full bg-primary px-5 py-3 text-sm font-medium text-on-primary transition-colors hover:bg-on-primary-fixed-variant"
       >
         Let's Connect
       </button>
     </div>
   </div>
-</nav>
+</header>
 
 <script>
   const navbar = document.getElementById('navbar');
   const menuBtn = document.getElementById('menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  const menuIcon = document.getElementById('menu-icon');
-  const closeIcon = document.getElementById('close-icon');
   const connectBtn = document.getElementById('connect-btn');
   const mobileConnectBtn = document.getElementById('mobile-connect-btn');
 
   let isMenuOpen = false;
-
-  // Scroll behavior
-  function handleScroll() {
-    if (window.scrollY > 10) {
-      navbar.classList.add('bg-surface', 'shadow-md', 'border-b', 'border-border');
-      navbar.classList.remove('bg-transparent', 'border-transparent');
-    } else {
-      navbar.classList.remove('bg-surface', 'shadow-md', 'border-b', 'border-border');
-      navbar.classList.add('bg-transparent', 'border-transparent');
-    }
-  }
 
   // Mobile menu toggle
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
     if (isMenuOpen) {
       mobileMenu.classList.remove('translate-x-full');
-      menuIcon.classList.add('hidden');
-      closeIcon.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     } else {
       mobileMenu.classList.add('translate-x-full');
-      menuIcon.classList.remove('hidden');
-      closeIcon.classList.add('hidden');
       document.body.style.overflow = '';
     }
   }
@@ -152,7 +104,6 @@ const navLinks = [
   }
 
   // Event listeners
-  window.addEventListener('scroll', handleScroll);
   menuBtn.addEventListener('click', toggleMenu);
   connectBtn.addEventListener('click', scrollToFooter);
   mobileConnectBtn.addEventListener('click', scrollToFooter);
@@ -163,8 +114,4 @@ const navLinks = [
       if (isMenuOpen) toggleMenu();
     });
   });
-
-  // Initial state
-  handleScroll();
-  mobileMenu.classList.add('translate-x-full');
 </script>

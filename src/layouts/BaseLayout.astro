@@ -51,9 +51,9 @@ const canonicalURL = url.href
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.url).href} />
   </head>
-  <body>
+  <body class="min-h-screen flex flex-col">
     <Navbar />
-    <main class="min-h-screen">
+    <main class="flex-grow pt-24 pb-[120px]">
       <slot />
     </main>
     <Footer />

@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import ProductCard from '../../components/ProductCard.astro'
-import SectionHeading from '../../components/SectionHeading.astro'
 import { getAllProducts } from '../../lib/sanity'
 
 const filters = ['All', 'Live', 'Building', 'Concept']
@@ -9,50 +8,50 @@ const filters = ['All', 'Live', 'Building', 'Concept']
 const products = (await getAllProducts()) || []
 ---
 
-<BaseLayout title="Rohail Khan Shinwari — Products">
-  <section class="py-20 md:py-28">
-    <div class="mx-auto max-w-7xl px-6">
-      <h1 class="font-display text-3xl font-bold md:text-4xl">Products</h1>
+<BaseLayout title="Rohail — Products">
+  <section class="max-w-[1200px] mx-auto px-6 py-[120px]">
+    <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-12">
+      <span class="animated-underline">Products</span>
+    </h1>
 
-      <!-- Filter Bar -->
-      <div class="mt-8 flex flex-wrap gap-2">
-        {filters.map(filter => (
-          <button
-            class={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-              filter === 'All'
-                ? 'bg-accent text-surface'
-                : 'bg-surface text-muted hover:text-text'
-            }`}
-            data-filter={filter}
-          >
-            {filter}
-          </button>
-        ))}
-      </div>
-
-      <!-- Products Grid -->
-      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {products.map(product => (
-          <a href={`/products/${product.slug.current}`}>
-            <ProductCard product={product} />
-          </a>
-        ))}
-      </div>
-
-      <!-- Empty State -->
-      <div id="empty-state" class="mt-12 hidden text-center">
-        <p class="text-muted">No products found for this filter.</p>
-      </div>
-
-      <!-- No Products State (when Sanity has no content yet) -->
-      {products.length === 0 && (
-        <div class="mt-12 rounded-2xl border border-border bg-surface p-8 text-center">
-          <p class="text-muted">
-            No products yet. Add content in your Sanity CMS to see them here.
-          </p>
-        </div>
-      )}
+    <!-- Filter Bar -->
+    <div class="mt-8 flex flex-wrap gap-3 mb-12">
+      {filters.map(filter => (
+        <button
+          class={`font-label-caps text-label-caps rounded-full px-4 py-2 transition-colors ${
+            filter === 'All'
+              ? 'bg-primary text-on-primary'
+              : 'bg-surface-variant text-on-surface hover:text-primary'
+          }`}
+          data-filter={filter}
+        >
+          {filter}
+        </button>
+      ))}
     </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {products.map(product => (
+        <a href={`/products/${product.slug.current}`}>
+          <ProductCard product={product} />
+        </a>
+      ))}
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="mt-12 hidden text-center">
+      <p class="text-on-surface-variant">No products found for this filter.</p>
+    </div>
+
+    <!-- No Products State (when Sanity has no content yet) -->
+    {products.length === 0 && (
+      <div class="mt-12 rounded-2xl border border-outline-variant/10 bg-surface-container-lowest p-8 text-center">
+        <p class="text-on-surface-variant">
+          No products yet. Add content in your Sanity CMS to see them here.
+        </p>
+      </div>
+    )}
   </section>
 </BaseLayout>
 
@@ -65,11 +64,11 @@ const products = (await getAllProducts()) || []
     button.addEventListener('click', () => {
       // Update button styles
       buttons.forEach(b => {
-        b.classList.remove('bg-accent', 'text-surface')
-        b.classList.add('bg-surface', 'text-muted')
+        b.classList.remove('bg-primary', 'text-on-primary')
+        b.classList.add('bg-surface-variant', 'text-on-surface')
       })
-      button.classList.remove('bg-surface', 'text-muted')
-      button.classList.add('bg-accent', 'text-surface')
+      button.classList.remove('bg-surface-variant', 'text-on-surface')
+      button.classList.add('bg-primary', 'text-on-primary')
 
       // Filter products
       const filter = button.getAttribute('data-filter')

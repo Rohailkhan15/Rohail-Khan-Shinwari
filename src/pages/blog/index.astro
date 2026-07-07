@@ -9,48 +9,48 @@ const currentCategory = 'All'
 const allPosts = (await getAllPosts()) || []
 ---
 
-<BaseLayout title="Rohail Khan Shinwari — Blog">
-  <section class="py-20 md:py-28">
-    <div class="mx-auto max-w-7xl px-6">
-      <h1 class="font-display text-3xl font-bold md:text-4xl">Blog</h1>
+<BaseLayout title="Rohail — Blog">
+  <section class="max-w-[1200px] mx-auto px-6 py-[120px]">
+    <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-12">
+      <span class="animated-underline">Blog</span>
+    </h1>
 
-      <!-- Category Filter -->
-      <div class="mt-8 flex flex-wrap gap-2">
-        {categories.map(category => (
-          <button
-            class={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-              currentCategory === category
-                ? 'bg-accent text-surface'
-                : 'bg-surface text-muted hover:text-text'
-            }`}
-            data-category={category}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      <!-- Posts Grid -->
-      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {allPosts.map(post => (
-          <BlogCard post={post} />
-        ))}
-      </div>
-
-      <!-- Empty State -->
-      <div id="empty-state" class="mt-12 text-center hidden">
-        <p class="text-muted">No posts found in this category.</p>
-      </div>
-
-      <!-- No Posts State (when Sanity has no content yet) -->
-      {allPosts.length === 0 && (
-        <div class="mt-12 rounded-2xl border border-border bg-surface p-8 text-center">
-          <p class="text-muted">
-            No blog posts yet. Add content in your Sanity CMS to see them here.
-          </p>
-        </div>
-      )}
+    <!-- Category Filter -->
+    <div class="mt-8 flex flex-wrap gap-3 mb-12">
+      {categories.map(category => (
+        <button
+          class={`font-label-caps text-label-caps rounded-full px-4 py-2 transition-colors ${
+            currentCategory === category
+              ? 'bg-primary text-on-primary'
+              : 'bg-surface-variant text-on-surface hover:text-primary'
+          }`}
+          data-category={category}
+        >
+          {category}
+        </button>
+      ))}
     </div>
+
+    <!-- Posts Grid -->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {allPosts.map(post => (
+        <BlogCard post={post} />
+      ))}
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="mt-12 text-center hidden">
+      <p class="text-on-surface-variant">No posts found in this category.</p>
+    </div>
+
+    <!-- No Posts State (when Sanity has no content yet) -->
+    {allPosts.length === 0 && (
+      <div class="mt-12 rounded-2xl border border-outline-variant/10 bg-surface-container-lowest p-8 text-center">
+        <p class="text-on-surface-variant">
+          No blog posts yet. Add content in your Sanity CMS to see them here.
+        </p>
+      </div>
+    )}
   </section>
 </BaseLayout>
 
@@ -63,11 +63,11 @@ const allPosts = (await getAllPosts()) || []
     button.addEventListener('click', () => {
       // Update button styles
       buttons.forEach(b => {
-        b.classList.remove('bg-accent', 'text-surface')
-        b.classList.add('bg-surface', 'text-muted')
+        b.classList.remove('bg-primary', 'text-on-primary')
+        b.classList.add('bg-surface-variant', 'text-on-surface')
       })
-      button.classList.remove('bg-surface', 'text-muted')
-      button.classList.add('bg-accent', 'text-surface')
+      button.classList.remove('bg-surface-variant', 'text-on-surface')
+      button.classList.add('bg-primary', 'text-on-primary')
 
       // Filter posts
       const category = button.getAttribute('data-category')

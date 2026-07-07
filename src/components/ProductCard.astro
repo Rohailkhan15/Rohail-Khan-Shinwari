@@ -6,51 +6,48 @@ interface Props {
 }
 
 const { product } = Astro.props
-
-const statusColors = {
-  live: 'bg-green-100 text-green-700',
-  building: 'bg-yellow-100 text-yellow-700',
-  concept: 'bg-gray-100 text-gray-700',
-}
 ---
 
-<div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md" data-status={product.status}>
+<div class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" data-status={product.status}>
+  <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+  
   <!-- Status Badge -->
-  <div class="mb-3 flex items-center gap-2">
-    <span class={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[product.status]}`}>
+  <div class="mb-4 flex items-center gap-3">
+    <span class="font-label-caps text-label-caps bg-primary-container/10 text-primary px-3 py-1 rounded-full border border-primary/20">
       {product.status}
     </span>
     {product.price && (
-      <span class="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+      <span class="font-label-caps text-label-caps bg-secondary-container/10 text-secondary px-3 py-1 rounded-full border border-secondary/20">
         {product.price}
       </span>
     )}
   </div>
 
   <!-- Title -->
-  <h3 class="font-display text-xl font-semibold">{product.title}</h3>
+  <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{product.title}</h3>
 
   <!-- Description -->
-  <p class="mt-2 text-sm text-muted">{product.description}</p>
+  <p class="font-body-md text-body-md text-on-surface-variant mb-6">{product.description}</p>
 
   <!-- Tags -->
-  <div class="mt-4 flex flex-wrap gap-2">
-    {(product.tags || []).map(tag => (
-      <span class="rounded-full bg-tag px-2 py-1 text-xs text-accent">
+  <div class="flex gap-2 mt-auto mb-6">
+    {(product.tags || []).slice(0, 3).map(tag => (
+      <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">
         {tag}
       </span>
     ))}
   </div>
 
   <!-- Links -->
-  <div class="mt-4 flex gap-4">
+  <div class="flex gap-4">
     {product.productUrl && (
       <a
         href={product.productUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
+        class="font-label-caps text-label-caps text-primary hover:text-primary transition-colors flex items-center gap-1"
       >
+        <span class="material-symbols-outlined text-[16px]">open_in_new</span>
         View Product
       </a>
     )}
@@ -59,8 +56,9 @@ const statusColors = {
         href={product.github}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
+        class="font-label-caps text-label-caps text-primary hover:text-primary transition-colors flex items-center gap-1"
       >
+        <span class="material-symbols-outlined text-[16px]">code</span>
         GitHub
       </a>
     )}

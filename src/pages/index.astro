@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import SectionHeading from '../components/SectionHeading.astro'
 import { getAllProjects, getAllPosts } from '../lib/sanity'
 
 const allProjects = await getAllProjects()
@@ -8,173 +7,233 @@ const featuredProjects = (allProjects || []).filter(p => p.featured).slice(0, 3)
 
 const allPosts = await getAllPosts()
 const latestPosts = (allPosts || []).slice(0, 3)
-
-const focusAreas = [
-  'AI & Machine Learning',
-  'Writing & Ideas',
-  'Building Products',
-  'Content Creation',
-]
 ---
 
-<BaseLayout title="Rohail Khan Shinwari — Home">
+<BaseLayout title="Rohail — Built for the future.">
   <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-bg py-20 md:py-28">
-    <!-- Radial gradient behind photo -->
-    <div class="absolute left-0 top-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-accent/5 blur-3xl md:left-10" />
-
-    <div class="relative mx-auto max-w-7xl px-6">
-      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
-        <!-- Photo (Left) -->
-        <div class="flex justify-center md:justify-start">
-          <div class="relative h-[280px] w-[280px] overflow-hidden rounded-2xl bg-surface shadow-lg">
-            <img
-              src="/images/Rohail_black_proifle.jpeg"
-              alt="Rohail"
-              class="h-full w-full object-cover"
-              loading="eager"
-            />
-          </div>
+  <section class="max-w-[1200px] mx-auto px-6 py-[120px] min-h-[819px] flex items-center reveal">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center w-full">
+      <!-- Left: Photo -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-start relative mb-12 lg:mb-0">
+        <div class="absolute inset-0 hero-gradient scale-[1.5] -z-10"></div>
+        <div class="w-[280px] h-[280px] rounded-full border border-outline-variant/20 p-2 overflow-hidden bg-surface">
+          <img
+            src="/images/Rohail_black_proifle.jpeg"
+            alt="Rohail"
+            class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500"
+            loading="eager"
+          />
         </div>
+      </div>
 
-        <!-- Content (Right) -->
-        <div class="text-center md:text-left">
-          <h1 class="font-display text-4xl font-bold tracking-tight md:text-6xl">
-            Rohail Khan Shinwari
-          </h1>
-          <p class="mt-4 text-xl text-muted md:text-2xl">
-            Building with AI. Writing what matters.
-          </p>
-          <p class="mt-4 text-base leading-relaxed text-muted md:text-lg">
-            AI student at NUTech Islamabad. Building products, writing about technology,
-            and exploring the future of software.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
-            <a
-              href="/projects"
-              class="rounded-full bg-accent px-6 py-3 text-sm font-medium text-surface transition-colors hover:bg-accent/90"
-            >
-              View Projects
-            </a>
-            <a
-              href="/blog"
-              class="rounded-full border border-border px-6 py-3 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent"
-            >
-              Read Blog
-            </a>
-          </div>
+      <!-- Right: Content -->
+      <div class="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left" style="transition-delay: 0.2s;">
+        <div class="font-label-caps text-label-caps text-primary bg-primary-container/10 px-3 py-1 rounded-full mb-6 border border-primary/20 inline-block">
+          AI ENGINEER &amp; DESIGNER
+        </div>
+        <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-4">
+          Hi, I'm Rohail.
+        </h1>
+        <h2 class="font-headline-md text-headline-md text-on-surface-variant mb-6 h-[40px]" id="typewriter-container">
+          <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+        </h2>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10">
+          I bridge the gap between complex machine learning models and intuitive human interfaces. Currently exploring the intersection of generative AI and minimalist design systems.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <a
+            class="inline-flex justify-center items-center bg-primary text-on-primary px-8 py-4 rounded-full font-body-md text-body-md hover:bg-on-primary-fixed-variant transition-colors group"
+            href="/projects"
+          >
+            View Projects
+            <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+          </a>
+          <a
+            class="inline-flex justify-center items-center bg-transparent border-2 border-primary text-primary px-8 py-4 rounded-full font-body-md text-body-md hover:bg-primary/5 transition-colors"
+            href="/blog"
+          >
+            Read Blog
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Projects Teaser -->
-  <section class="py-20 md:py-28">
-    <div class="mx-auto max-w-7xl px-6">
-      <SectionHeading>What I'm Building</SectionHeading>
+  <!-- What I'm Building -->
+  <section class="max-w-[1200px] mx-auto px-6 py-[120px] reveal">
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
+      <span class="animated-underline">What I'm Building</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {featuredProjects && featuredProjects.length > 0 ? (
-        <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {featuredProjects.map(project => (
-            <a href={`/projects/${project.slug.current}`} class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
-              <div class="mb-3 flex items-center gap-2">
-                <span class="rounded-full bg-tag px-3 py-1 text-xs font-medium text-accent">
-                  {project.status}
+        featuredProjects.map((project, index) => (
+          <a
+            href={`/projects/${project.slug.current}`}
+            class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden"
+          >
+            <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+              <span class="material-symbols-outlined">psychology</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{project.title}</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">{project.description}</p>
+            <div class="flex gap-2 mt-auto">
+              {(project.tags || []).slice(0, 2).map(tag => (
+                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">
+                  {tag}
                 </span>
-              </div>
-              <h3 class="font-display text-xl font-semibold">{project.title}</h3>
-              <p class="mt-2 text-sm text-muted">{project.description}</p>
-              <div class="mt-4 flex flex-wrap gap-2">
-                {(project.tags || []).map(tag => (
-                  <span class="rounded-full bg-tag px-2 py-1 text-xs text-accent">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </a>
-          ))}
-        </div>
+              ))}
+            </div>
+          </a>
+        ))
       ) : (
-        <div class="mt-8 rounded-2xl border border-border bg-surface p-8 text-center">
-          <p class="text-muted">No featured projects yet. Add content in your Sanity CMS.</p>
-        </div>
-      )}
-      <div class="mt-8">
-        <a
-          href="/projects"
-          class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
-        >
-          View all projects →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Latest Writing Teaser -->
-  <section class="py-20 md:py-28">
-    <div class="mx-auto max-w-7xl px-6">
-      <SectionHeading>From the Blog</SectionHeading>
-      {latestPosts && latestPosts.length > 0 ? (
-        <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {latestPosts.map(post => (
-            <a href={`/blog/${post.slug.current}`} class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
-              <h3 class="font-display text-xl font-semibold">{post.title}</h3>
-              <p class="mt-2 text-sm text-muted">{post.excerpt}</p>
-              <div class="mt-4 flex items-center gap-4 text-xs text-muted">
-                <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-                <span>·</span>
-                <span>{post.readingTime || 5} min read</span>
+        // Fallback static cards if no projects
+        <>
+          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+              <span class="material-symbols-outlined">psychology</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">NeuroCanvas</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">A visual node-based editor for orchestrating local LLM pipelines.</p>
+            <div class="flex gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">React</span>
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Python</span>
+            </div>
+          </a>
+          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects">
+            <div class="absolute bottom-0 right-0 w-32 h-32 border border-outline-variant/20 rounded-tl-full -mb-16 -mr-16 transition-transform group-hover:scale-110"></div>
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+              <span class="material-symbols-outlined">data_object</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Syntax UI</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">A minimalist design system for technical dashboards.</p>
+            <div class="flex gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Tailwind</span>
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Figma</span>
+            </div>
+          </a>
+          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects">
+            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-secondary/5 rounded-full -translate-x-1/2 -translate-y-1/2 scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+            <div class="relative z-10">
+              <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                <span class="material-symbols-outlined">robot_2</span>
               </div>
-            </a>
-          ))}
-        </div>
-      ) : (
-        <div class="mt-8 rounded-2xl border border-border bg-surface p-8 text-center">
-          <p class="text-muted">No blog posts yet. Add content in your Sanity CMS.</p>
-        </div>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Echo Bot</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-6">An autonomous research agent for documentation synthesis.</p>
+              <div class="flex gap-2 mt-auto">
+                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">LangChain</span>
+                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">TypeScript</span>
+              </div>
+            </div>
+          </a>
+        </>
       )}
-      <div class="mt-8">
-        <a
-          href="/blog"
-          class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
-        >
-          Read all posts →
-        </a>
-      </div>
     </div>
   </section>
 
   <!-- About Teaser -->
-  <section class="py-20 md:py-28">
-    <div class="mx-auto max-w-7xl px-6">
-      <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+  <section class="max-w-[1200px] mx-auto px-6 py-[120px] reveal">
+    <div class="bg-surface-container-low rounded-2xl p-8 md:p-12 border border-outline-variant/10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         <div>
-          <SectionHeading>About Me</SectionHeading>
-          <p class="mt-4 text-base leading-relaxed text-muted">
-            I'm an AI student at NUTech Islamabad with a passion for building products
-            and writing about technology. I believe in the power of AI to transform
-            industries and am constantly learning, experimenting, and creating.
+          <h2 class="font-headline-md text-headline-md text-on-surface mb-6">
+            <span class="animated-underline">The Philosophy</span>
+          </h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
+            I believe that the most advanced technology should feel invisible. My work focuses on stripping away the superficial complexity of AI tools to expose clear, actionable interfaces. Design isn't just how it looks; it's how the system communicates its intent to the user.
           </p>
-          <div class="mt-6">
-            <a
-              href="/about"
-              class="text-sm font-medium text-accent transition-colors hover:text-accent-2"
-            >
-              More about me →
-            </a>
-          </div>
+          <a
+            class="inline-flex items-center text-primary font-body-md text-body-md hover:underline group"
+            href="/about"
+          >
+            More about me
+            <span class="material-symbols-outlined ml-1 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
         </div>
-        <div>
-          <h3 class="font-display text-lg font-semibold">Currently Focused On</h3>
-          <ul class="mt-4 space-y-2">
-            {focusAreas.map(area => (
-              <li class="flex items-center gap-2 text-sm text-muted">
-                <span class="h-1.5 w-1.5 rounded-full bg-accent" />
-                {area}
-              </li>
-            ))}
+        <div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/10 font-code-sm text-code-sm">
+          <div class="text-outline mb-4">/* Current Focus */</div>
+          <ul class="space-y-3 text-on-surface-variant">
+            <li class="flex items-start">
+              <span class="text-primary mr-2">→</span>
+              <span>Optimizing local RAG pipelines for lower latency.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">→</span>
+              <span>Designing "High-Presence Minimalist" UI patterns.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">→</span>
+              <span>Studying the typography of technical documentation.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary mr-2">→</span>
+              <span>Building robust, self-healing web scrapers.</span>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  // Scroll Reveal Logic
+  function reveal() {
+    const reveals = document.querySelectorAll(".reveal");
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const elementVisible = 100;
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      }
+    }
+  }
+  window.addEventListener("scroll", reveal);
+  // Trigger on load
+  reveal();
+
+  // Typewriter Effect Logic
+  const phrases = [
+    "Building intelligent interfaces.",
+    "Designing systemic clarity.",
+    "Engineering the future."
+  ];
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingDelay = 100;
+  let erasingDelay = 50;
+  let newPhraseDelay = 2000;
+
+  const textElement = document.getElementById('typewriter-text');
+
+  function type() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (isDeleting) {
+      textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let delay = isDeleting ? erasingDelay : typingDelay;
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      delay = newPhraseDelay;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      delay = 500;
+    }
+
+    setTimeout(type, delay);
+  }
+
+  // Start typewriter after a short delay
+  setTimeout(type, 1000);
+</script>

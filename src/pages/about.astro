@@ -1,27 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import SectionHeading from '../components/SectionHeading.astro'
 
 const whatIDo = [
   {
     title: 'AI & Tech',
     description: 'Exploring machine learning, building intelligent systems, and staying at the forefront of technology.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M8.5 15.5v.01"/><path d="M15.5 8.5v.01"/></svg>`,
+    icon: 'psychology',
   },
   {
     title: 'Writing & Ideas',
     description: 'Sharing thoughts on technology, startups, and the future through essays and build logs.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    icon: 'edit',
   },
   {
     title: 'Building Products',
     description: 'Creating software that solves real problems, from Chrome extensions to full-stack applications.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`,
+    icon: 'rocket_launch',
   },
   {
     title: 'Content Creation',
     description: 'Producing videos, articles, and resources to help others learn and grow.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 12-7.6 7.6a2.4 2.4 0 0 1-3.4 0L3.4 13a2.4 2.4 0 0 1 0-3.4L11 2.4a2.4 2.4 0 0 1 3.4 0l8.6 8.6Z"/><path d="m14.5 9.5 3 3"/><path d="m5.5 5.5 3 3"/></svg>`,
+    icon: 'video_library',
   },
 ]
 
@@ -35,94 +34,97 @@ const currently = [
 const email = 'Shinwarir098@gmail.com'
 ---
 
-<BaseLayout title="Rohail Khan Shinwari — About">
+<BaseLayout title="Rohail — About">
   <!-- Hero -->
-  <section class="relative overflow-hidden bg-bg py-20 md:py-28">
-    <div class="mx-auto max-w-7xl px-6">
-      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
-        <!-- Photo -->
-        <div class="flex justify-center md:justify-start">
-          <div class="relative h-[320px] w-[320px] overflow-hidden rounded-2xl bg-surface shadow-lg">
-            <img
-              src="/images/Rohail_black_proifle.jpeg"
-              alt="Rohail"
-              class="h-full w-full object-cover"
-              loading="eager"
-            />
-          </div>
+  <section class="max-w-[1200px] mx-auto px-6 py-[120px]">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+      <!-- Photo -->
+      <div class="flex justify-center md:justify-start">
+        <div class="relative h-[320px] w-[320px] overflow-hidden rounded-full border border-outline-variant/20 p-2 bg-surface">
+          <img
+            src="/images/Rohail_black_proifle.jpeg"
+            alt="Rohail"
+            class="h-full w-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500"
+            loading="eager"
+          />
         </div>
+      </div>
 
-        <!-- Content -->
-        <div class="text-center md:text-left">
-          <h1 class="font-display text-4xl font-bold tracking-tight md:text-6xl">
-            Rohail Khan Shinwari
-          </h1>
-          <p class="mt-6 text-xl text-muted md:text-2xl">
-            AI student, builder, and future founder.
-          </p>
-          <p class="mt-4 text-base leading-relaxed text-muted md:text-lg">
-            I'm on a mission to build things that matter and share what I learn along the way.
-          </p>
-        </div>
+      <!-- Content -->
+      <div class="text-center md:text-left">
+        <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-6">
+          <span class="animated-underline">About Me</span>
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-4">
+          AI student, builder, and future founder.
+        </p>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          I'm on a mission to build things that matter and share what I learn along the way.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- My Story -->
-  <section class="py-20 md:py-28">
-    <div class="mx-auto max-w-3xl px-6">
-      <SectionHeading>My Story</SectionHeading>
-      <div class="mt-8 space-y-6 text-base leading-relaxed text-muted">
-        <p>
-          I'm an AI student at NUTech Islamabad, where I'm diving deep into machine learning,
-          neural networks, and the future of intelligent systems. But my journey isn't just about
-          academics—it's about building.
-        </p>
-        <p>
-          I've always had a builder mindset. Whether it's a Chrome extension, a full-stack application,
-          or a new system for organizing knowledge, I love taking ideas from concept to reality.
-          I believe the best way to learn is by doing, and I'm constantly experimenting with new
-          technologies and approaches.
-        </p>
-        <p>
-          Beyond code, I'm passionate about startups, content creation, and writing. I think deeply
-          about the intersection of technology and human potential. Writing helps me clarify my thoughts,
-          and sharing those thoughts helps me connect with others who are on similar journeys.
-        </p>
-        <p>
-          My long-term goal is ambitious but clear: I want to build a software company that creates
-          products people genuinely love. Every project I take on, every article I write, and every
-          skill I learn is a step toward that vision.
-        </p>
-      </div>
+  <section class="max-w-[800px] mx-auto px-6 py-[120px]">
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
+      <span class="animated-underline">My Story</span>
+    </h2>
+    <div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
+      <p>
+        I'm an AI student at NUTech Islamabad, where I'm diving deep into machine learning,
+        neural networks, and the future of intelligent systems. But my journey isn't just about
+        academics—it's about building.
+      </p>
+      <p>
+        I've always had a builder mindset. Whether it's a Chrome extension, a full-stack application,
+        or a new system for organizing knowledge, I love taking ideas from concept to reality.
+        I believe the best way to learn is by doing, and I'm constantly experimenting with new
+        technologies and approaches.
+      </p>
+      <p>
+        Beyond code, I'm passionate about startups, content creation, and writing. I think deeply
+        about the intersection of technology and human potential. Writing helps me clarify my thoughts,
+        and sharing those thoughts helps me connect with others who are on similar journeys.
+      </p>
+      <p>
+        My long-term goal is ambitious but clear: I want to build a software company that creates
+        products people genuinely love. Every project I take on, every article I write, and every
+        skill I learn is a step toward that vision.
+      </p>
     </div>
   </section>
 
   <!-- What I Do -->
-  <section class="py-20 md:py-28">
-    <div class="mx-auto max-w-7xl px-6">
-      <SectionHeading>What I Do</SectionHeading>
-      <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {whatIDo.map(item => (
-          <div class="rounded-2xl border border-border bg-surface p-6 transition-shadow hover:shadow-md">
-            <div class="mb-4 text-accent" set:html={item.icon} />
-            <h3 class="font-display text-xl font-semibold">{item.title}</h3>
-            <p class="mt-2 text-sm text-muted">{item.description}</p>
+  <section class="max-w-[1200px] mx-auto px-6 py-[120px]">
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
+      <span class="animated-underline">What I Do</span>
+    </h2>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {whatIDo.map(item => (
+        <div class="group bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1">
+          <div class="mb-4 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+            <span class="material-symbols-outlined">{item.icon}</span>
           </div>
-        ))}
-      </div>
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{item.title}</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant">{item.description}</p>
+        </div>
+      ))}
     </div>
   </section>
 
   <!-- Currently -->
-  <section class="py-20 md:py-28">
-    <div class="mx-auto max-w-3xl px-6">
-      <SectionHeading>Currently</SectionHeading>
-      <ul class="mt-8 space-y-4">
+  <section class="max-w-[800px] mx-auto px-6 py-[120px]">
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
+      <span class="animated-underline">Currently</span>
+    </h2>
+    <div class="bg-surface-container-low rounded-2xl p-8 border border-outline-variant/10 font-code-sm text-code-sm">
+      <div class="text-outline mb-4">/* Current Focus */</div>
+      <ul class="space-y-3 text-on-surface-variant">
         {currently.map(item => (
-          <li class="flex items-start gap-3 text-base text-muted">
-            <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent" />
-            {item}
+          <li class="flex items-start">
+            <span class="text-primary mr-2">→</span>
+            <span>{item}</span>
           </li>
         ))}
       </ul>
@@ -130,34 +132,21 @@ const email = 'Shinwarir098@gmail.com'
   </section>
 
   <!-- Reach Me -->
-  <section class="py-20 md:py-28">
-    <div class="mx-auto max-w-3xl px-6">
-      <SectionHeading>Reach Me</SectionHeading>
-      <div class="mt-8">
-        <a
-          href={`mailto:${email}`}
-          class="inline-flex items-center gap-2 text-lg font-medium text-accent transition-colors hover:text-accent-2"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect width="20" height="16" x="2" y="4" rx="2" />
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-          </svg>
-          {email}
-        </a>
-        <p class="mt-4 text-sm text-muted">
-          You can also find me on social media in the footer below.
-        </p>
-      </div>
+  <section class="max-w-[800px] mx-auto px-6 py-[120px]">
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
+      <span class="animated-underline">Reach Me</span>
+    </h2>
+    <div class="mt-8">
+      <a
+        href={`mailto:${email}`}
+        class="inline-flex items-center gap-2 font-body-lg text-body-lg text-primary hover:text-primary transition-colors group"
+      >
+        <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">mail</span>
+        {email}
+      </a>
+      <p class="mt-4 font-body-md text-body-md text-on-surface-variant">
+        You can also find me on social media in the footer below.
+      </p>
     </div>
   </section>
 </BaseLayout>
