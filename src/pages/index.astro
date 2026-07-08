@@ -9,7 +9,7 @@ const allPosts = await getAllPosts()
 const latestPosts = (allPosts || []).slice(0, 3)
 ---
 
-<BaseLayout title="Rohail — Built for the future.">
+<BaseLayout title="Rohail Khan Shinwari — Built for the future.">
   <!-- Hero Section -->
   <section class="max-w-[1200px] mx-auto px-6 py-[120px] min-h-[819px] flex items-center reveal">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center w-full">
@@ -19,7 +19,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
         <div class="w-[280px] h-[280px] rounded-full border border-outline-variant/20 p-2 overflow-hidden bg-surface">
           <img
             src="/images/Rohail_black_proifle.jpeg"
-            alt="Rohail"
+            alt="Rohail Khan Shinwari"
             class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500"
             loading="eager"
           />
@@ -32,7 +32,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
           AI ENGINEER &amp; DESIGNER
         </div>
         <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-4">
-          Hi, I'm Rohail.
+          Hi, I'm Rohail Khan Shinwari.
         </h1>
         <h2 class="font-headline-md text-headline-md text-on-surface-variant mb-6 h-[40px]" id="typewriter-container">
           <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
@@ -129,6 +129,92 @@ const latestPosts = (allPosts || []).slice(0, 3)
           </a>
         </>
       )}
+    </div>
+    <div class="mt-12">
+      <a
+        class="inline-flex items-center text-primary font-body-md text-body-md hover:underline group"
+        href="/projects"
+      >
+        View all projects
+        <span class="material-symbols-outlined ml-1 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Latest Writing -->
+  <section class="max-w-[1200px] mx-auto px-6 py-[120px] reveal">
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
+      <span class="animated-underline">From the Blog</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {latestPosts && latestPosts.length > 0 ? (
+        latestPosts.map((post, index) => (
+          <a
+            href={`/blog/${post.slug.current}`}
+            class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden"
+          >
+            <div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+              <span class="material-symbols-outlined">article</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{post.title}</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">{post.excerpt}</p>
+            <div class="flex gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">
+                {post.category}
+              </span>
+            </div>
+          </a>
+        ))
+      ) : (
+        // Fallback static cards if no posts
+        <>
+          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/blog">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+              <span class="material-symbols-outlined">article</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">The Future of AI Interfaces</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Exploring how generative AI is reshaping the way we interact with software.</p>
+            <div class="flex gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Essay</span>
+            </div>
+          </a>
+          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/blog">
+            <div class="absolute bottom-0 right-0 w-32 h-32 border border-outline-variant/20 rounded-tl-full -mb-16 -mr-16 transition-transform group-hover:scale-110"></div>
+            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+              <span class="material-symbols-outlined">edit_note</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Building with Astro</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">A deep dive into building performant static sites with Astro.</p>
+            <div class="flex gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Build Log</span>
+            </div>
+          </a>
+          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/blog">
+            <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-secondary/5 rounded-full -translate-x-1/2 -translate-y-1/2 scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+            <div class="relative z-10">
+              <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+                <span class="material-symbols-outlined">auto_stories</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Design Systems 101</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Creating scalable and maintainable design systems for modern web applications.</p>
+              <div class="flex gap-2 mt-auto">
+                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Research</span>
+              </div>
+            </div>
+          </a>
+        </>
+      )}
+    </div>
+    <div class="mt-12">
+      <a
+        class="inline-flex items-center text-primary font-body-md text-body-md hover:underline group"
+        href="/blog"
+      >
+        Read all posts
+        <span class="material-symbols-outlined ml-1 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      </a>
     </div>
   </section>
 

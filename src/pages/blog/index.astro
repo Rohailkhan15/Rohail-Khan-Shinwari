@@ -3,13 +3,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import BlogCard from '../../components/BlogCard.astro'
 import { getAllPosts } from '../../lib/sanity'
 
-const categories = ['All', 'Essay', 'Build Log', 'Research', 'Micro-thought'] as const
+const categories = ['All', 'Essay', 'Build Log', 'Micro-thought'] as const
 const currentCategory = 'All'
 
 const allPosts = (await getAllPosts()) || []
 ---
 
-<BaseLayout title="Rohail — Blog">
+<BaseLayout title="Rohail Khan Shinwari — Blog">
   <section class="max-w-[1200px] mx-auto px-6 py-[120px]">
     <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-12">
       <span class="animated-underline">Blog</span>
@@ -32,7 +32,7 @@ const allPosts = (await getAllPosts()) || []
     </div>
 
     <!-- Posts Grid -->
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {allPosts.map(post => (
         <BlogCard post={post} />
       ))}

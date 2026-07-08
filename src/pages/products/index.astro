@@ -3,12 +3,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import ProductCard from '../../components/ProductCard.astro'
 import { getAllProducts } from '../../lib/sanity'
 
-const filters = ['All', 'Live', 'Building', 'Concept']
+const filters = ['All', 'Live', 'Building']
 
 const products = (await getAllProducts()) || []
 ---
 
-<BaseLayout title="Rohail — Products">
+<BaseLayout title="Rohail Khan Shinwari — Products">
   <section class="max-w-[1200px] mx-auto px-6 py-[120px]">
     <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-12">
       <span class="animated-underline">Products</span>

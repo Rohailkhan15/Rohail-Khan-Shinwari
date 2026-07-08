@@ -39,15 +39,15 @@ const { product } = Astro.props
   </div>
 
   <!-- Links -->
-  <div class="flex gap-4">
+  <div class="flex gap-3">
     {product.productUrl && (
       <a
         href={product.productUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="font-label-caps text-label-caps text-primary hover:text-primary transition-colors flex items-center gap-1"
+        class="font-label-caps text-[11px] bg-primary-container/10 text-primary px-2.5 py-1 rounded-full border border-primary/20 hover:bg-primary-container/20 transition-colors flex items-center gap-1"
       >
-        <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+        <span class="material-symbols-outlined text-[14px]">open_in_new</span>
         View Product
       </a>
     )}
@@ -56,9 +56,9 @@ const { product } = Astro.props
         href={product.github}
         target="_blank"
         rel="noopener noreferrer"
-        class="font-label-caps text-label-caps text-primary hover:text-primary transition-colors flex items-center gap-1"
+        class="font-label-caps text-[11px] bg-primary-container/10 text-primary px-2.5 py-1 rounded-full border border-primary/20 hover:bg-primary-container/20 transition-colors flex items-center gap-1"
       >
-        <span class="material-symbols-outlined text-[16px]">code</span>
+        <span class="material-symbols-outlined text-[14px]">code</span>
         GitHub
       </a>
     )}
