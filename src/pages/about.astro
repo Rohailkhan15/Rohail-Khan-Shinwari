@@ -35,111 +35,90 @@ const email = 'Shinwarir098@gmail.com'
 ---
 
 <BaseLayout title="Rohail Khan Shinwari — About">
+  <!-- Ambient Background Orbs -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute top-[10%] right-[-100px] w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px] animate-orb-drift"></div>
+    <div class="absolute bottom-[20%] left-[-80px] w-[350px] h-[350px] rounded-full bg-secondary/[0.03] blur-[100px] animate-orb-drift" style="animation-delay: -4s;"></div>
+  </div>
+
   <!-- Hero -->
-  <section class="max-w-[1200px] mx-auto px-6 py-12">
+  <section class="max-w-[1200px] mx-auto px-6 py-12 relative z-10 reveal">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
       <!-- Photo -->
       <div class="flex justify-center md:justify-start">
-        <div class="relative h-[320px] w-[320px] overflow-hidden rounded-full border border-outline-variant/20 p-2 bg-surface">
-          <img
-            src="/images/Rohail_black_proifle.jpeg"
-            alt="Rohail Khan Shinwari"
-            class="h-full w-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500"
-            loading="eager"
-          />
+        <div class="relative">
+          <div class="absolute inset-0 w-[320px] h-[320px] rounded-full bg-gradient-to-br from-primary/20 via-secondary/10 to-primary/5 animate-glow-pulse"></div>
+          <div class="h-[320px] w-[320px] overflow-hidden rounded-full border border-white/[0.1] p-2 bg-surface relative z-10">
+            <img
+              src="/images/Rohail_black_proifle.jpeg"
+              alt="Rohail Khan Shinwari"
+              class="h-full w-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500"
+              loading="eager"
+            />
+          </div>
         </div>
       </div>
 
       <!-- Content -->
       <div class="text-center md:text-left">
+        <div class="font-label-caps text-label-caps text-primary bg-primary-container/10 px-3 py-1 rounded-full mb-6 border border-primary/20 inline-block">
+          AI STUDENT &amp; BUILDER
+        </div>
         <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-6">
           <span class="animated-underline">About Me</span>
         </h1>
-        <p class="font-body-lg text-body-lg text-on-surface-variant mb-4">
-          AI student, builder, and future founder.
-        </p>
         <p class="font-body-md text-body-md text-on-surface-variant">
-          I'm on a mission to build things that matter and share what I learn along the way.
+          I'm 3 semesters into an AI degree and several years into an always-build mindset. I make things — websites, automations, videos, essays — then talk about how I made them. Not because I have it all figured out, but because figuring it out in public is more useful than figuring it out alone.
         </p>
       </div>
     </div>
   </section>
 
+  <div class="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-4"></div>
+
   <!-- My Story -->
-  <section class="max-w-[800px] mx-auto px-6 py-12">
+  <section class="max-w-[800px] mx-auto px-6 py-12 relative z-10 reveal">
     <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
       <span class="animated-underline">My Story</span>
     </h2>
-    <div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
+    <div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
       <p>
-        I'm an AI student at NUTech Islamabad, where I'm diving deep into machine learning,
-        neural networks, and the future of intelligent systems. But my journey isn't just about
-        academics—it's about building.
+        I'm an AI student at NUTech Islamabad, spending my days learning how intelligent
+      systems actually work under the hood. But the classroom is only half the education — the
+      other half happens whenever I sit down to build something and figure out why it doesn't
+      work yet.
       </p>
       <p>
-        I've always had a builder mindset. Whether it's a Chrome extension, a full-stack application,
-        or a new system for organizing knowledge, I love taking ideas from concept to reality.
-        I believe the best way to learn is by doing, and I'm constantly experimenting with new
-        technologies and approaches.
+        Right now that means backend web development and AI automations — the two things I'm
+      learning fastest and freelancing at the same time, because building for real clients teaches
+      you things a course never will. I'm a problem solver at the core: give me a messy workflow
+      or a slow process, and I'll find a way to make it faster, cleaner, or automatic.
       </p>
       <p>
-        Beyond code, I'm passionate about startups, content creation, and writing. I think deeply
-        about the intersection of technology and human potential. Writing helps me clarify my thoughts,
-        and sharing those thoughts helps me connect with others who are on similar journeys.
+        Beyond code, I'm passionate about startups, content creation, and writing. I'm a creator across almost every medium I can get my hands on — photography,
+      videography, cinematography, video editing, and writing. Writing helps me clarify my thoughts,
+      and sharing those thoughts helps me connect with others who are on similar journeys. 
+      I also read constantly — it's where most of my ideas actually come from.
       </p>
       <p>
-        My long-term goal is ambitious but clear: I want to build a software company that creates
-        products people genuinely love. Every project I take on, every article I write, and every
-        skill I learn is a step toward that vision.
+        I am on a mission to create products people genuinely rely
+      on. Every automation I ship, every client project I take on, and every piece I write or film
+      is part of that same trajectory — I'm just getting the reps in early.
       </p>
     </div>
   </section>
 
-  <!-- What I Do -->
-  <section class="max-w-[1200px] mx-auto px-6 py-12">
-    <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
-      <span class="animated-underline">What I Do</span>
-    </h2>
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-      {whatIDo.map(item => (
-        <div class="group bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1">
-          <div class="mb-4 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
-            <span class="material-symbols-outlined">{item.icon}</span>
-          </div>
-          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{item.title}</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">{item.description}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- Currently -->
-  <section class="max-w-[800px] mx-auto px-6 py-12">
-    <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
-      <span class="animated-underline">Currently</span>
-    </h2>
-    <div class="bg-surface-container-low rounded-2xl p-8 border border-outline-variant/10 font-code-sm text-code-sm">
-      <div class="text-outline mb-4">/* Current Focus */</div>
-      <ul class="space-y-3 text-on-surface-variant">
-        {currently.map(item => (
-          <li class="flex items-start">
-            <span class="text-primary mr-2">→</span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
+  <div class="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-4"></div>
 
   <!-- Reach Me -->
-  <section class="max-w-[800px] mx-auto px-6 py-12">
+  <section class="max-w-[800px] mx-auto px-6 py-12 relative z-10 reveal">
     <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
       <span class="animated-underline">Reach Me</span>
     </h2>
     <div class="mt-8">
       <a
         href={`mailto:${email}`}
-        class="inline-flex items-center gap-2 font-body-lg text-body-lg text-primary hover:text-primary transition-colors group"
+        class="inline-flex items-center gap-2 font-body-lg text-body-lg text-primary hover:text-primary/80 transition-colors group"
       >
         <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">mail</span>
         {email}
@@ -150,3 +129,19 @@ const email = 'Shinwarir098@gmail.com'
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  function reveal() {
+    const reveals = document.querySelectorAll(".reveal");
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const elementVisible = 100;
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      }
+    }
+  }
+  window.addEventListener("scroll", reveal);
+  reveal();
+</script>

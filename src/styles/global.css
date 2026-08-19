@@ -4,63 +4,63 @@
 
 @theme {
 
-  /* Colors from Technical Humanism design system */
-  --color-background: #faf8ff;
-  --color-surface: #faf8ff;
-  --color-surface-dim: #d9d9e5;
-  --color-surface-bright: #faf8ff;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f3f3fe;
-  --color-surface-container: #ededf9;
-  --color-surface-container-high: #e7e7f3;
-  --color-surface-container-highest: #e1e2ed;
-  --color-on-surface: #191b23;
-  --color-on-surface-variant: #434655;
-  --color-inverse-surface: #2e3039;
-  --color-inverse-on-surface: #f0f0fb;
-  --color-outline: #737686;
-  --color-outline-variant: #c3c6d7;
+  /* Colors — Deep Dark Theme (Spiritual & Wisdom) */
+  --color-background: #0a0f1a;
+  --color-surface: #0f1624;
+  --color-surface-dim: #0d1220;
+  --color-surface-bright: #182236;
+  --color-surface-container-lowest: #111827;
+  --color-surface-container-low: #141c2e;
+  --color-surface-container: #1a2438;
+  --color-surface-container-high: #1f2b42;
+  --color-surface-container-highest: #24324c;
+  --color-on-surface: #e2e8f0;
+  --color-on-surface-variant: #94a3b8;
+  --color-inverse-surface: #e2e8f0;
+  --color-inverse-on-surface: #0a0f1a;
+  --color-outline: #475569;
+  --color-outline-variant: #1e293b;
   --color-surface-tint: #0053db;
-  --color-primary: #004ac6;
+  --color-primary: #3b82f6;
   --color-on-primary: #ffffff;
   --color-primary-container: #2563eb;
-  --color-on-primary-container: #eeefff;
-  --color-inverse-primary: #b4c5ff;
-  --color-secondary: #712ae2;
+  --color-on-primary-container: #dbeafe;
+  --color-inverse-primary: #93c5fd;
+  --color-secondary: #a78bfa;
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #8a4cfc;
-  --color-on-secondary-container: #fffbff;
-  --color-tertiary: #943700;
-  --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #bc4800;
-  --color-on-tertiary-container: #ffede6;
-  --color-error: #ba1a1a;
+  --color-secondary-container: #7c3aed;
+  --color-on-secondary-container: #ede9fe;
+  --color-tertiary: #f59e0b;
+  --color-on-tertiary: #1a1207;
+  --color-tertiary-container: #d97706;
+  --color-on-tertiary-container: #fef3c7;
+  --color-error: #ef4444;
   --color-on-error: #ffffff;
-  --color-error-container: #ffdad6;
-  --color-on-error-container: #93000a;
-  --color-primary-fixed: #dbe1ff;
-  --color-primary-fixed-dim: #b4c5ff;
-  --color-on-primary-fixed: #00174b;
-  --color-on-primary-fixed-variant: #003ea8;
-  --color-secondary-fixed: #eaddff;
-  --color-secondary-fixed-dim: #d2bbff;
-  --color-on-secondary-fixed: #25005a;
-  --color-on-secondary-fixed-variant: #5a00c6;
-  --color-tertiary-fixed: #ffdbcd;
-  --color-tertiary-fixed-dim: #ffb596;
-  --color-on-tertiary-fixed: #360f00;
-  --color-on-tertiary-fixed-variant: #7d2d00;
-  --color-on-background: #191b23;
-  --color-surface-variant: #e1e2ed;
+  --color-error-container: #7f1d1d;
+  --color-on-error-container: #fecaca;
+  --color-primary-fixed: #1e3a5f;
+  --color-primary-fixed-dim: #1e40af;
+  --color-on-primary-fixed: #dbeafe;
+  --color-on-primary-fixed-variant: #1d4ed8;
+  --color-secondary-fixed: #2e1065;
+  --color-secondary-fixed-dim: #6d28d9;
+  --color-on-secondary-fixed: #ede9fe;
+  --color-on-secondary-fixed-variant: #5b21b6;
+  --color-tertiary-fixed: #451a03;
+  --color-tertiary-fixed-dim: #b45309;
+  --color-on-tertiary-fixed: #fef3c7;
+  --color-on-tertiary-fixed-variant: #92400e;
+  --color-on-background: #e2e8f0;
+  --color-surface-variant: #1e293b;
 
   /* Legacy color aliases for backward compatibility */
-  --color-bg: #faf8ff;
-  --color-border: #c3c6d7;
-  --color-text: #191b23;
-  --color-muted: #434655;
-  --color-accent: #004ac6;
-  --color-accent-2: #712ae2;
-  --color-tag: #dbe1ff;
+  --color-bg: #0a0f1a;
+  --color-border: #1e293b;
+  --color-text: #e2e8f0;
+  --color-muted: #94a3b8;
+  --color-accent: #3b82f6;
+  --color-accent-2: #a78bfa;
+  --color-tag: #162338;
 
   /* Typography */
   --font-display: 'Space Grotesk', sans-serif;
@@ -173,7 +173,7 @@
     height: 3px;
     bottom: -8px;
     left: 0;
-    background-color: var(--color-primary, #004ac6);
+    background: linear-gradient(90deg, #3b82f6, #a78bfa);
     border-radius: 9999px;
   }
 
@@ -194,7 +194,7 @@
     display: inline-block;
     width: 3px;
     height: 1em;
-    background-color: var(--color-primary, #004ac6);
+    background-color: #3b82f6;
     animation: blink 1s step-end infinite;
     vertical-align: text-bottom;
     margin-left: 4px;
@@ -205,10 +205,220 @@
     50% { opacity: 0; }
   }
 
-  /* Hero gradient */
+  /* Hero gradient — dark theme */
   .hero-gradient {
-    background: radial-gradient(circle, rgba(0,74,198,0.05) 0%, rgba(250,248,255,0) 70%);
+    background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, rgba(10,15,26,0) 70%);
   }
+}
+
+/* ── Animations ─────────────────────────────────── */
+
+/* Gentle floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Subtle shimmer/glow pulse for accents */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; filter: blur(20px); }
+  50% { opacity: 0.7; filter: blur(30px); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* Staggered fade-in from left */
+@keyframes fade-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-fade-in-left {
+  animation: fade-in-left 0.6s ease forwards;
+}
+
+/* Staggered fade-in from right */
+@keyframes fade-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-fade-in-right {
+  animation: fade-in-right 0.6s ease forwards;
+}
+
+/* Scale in animation */
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in {
+  animation: scale-in 0.5s ease forwards;
+}
+
+/* Ambient orb floating */
+@keyframes orb-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(10px, -15px) scale(1.05); }
+  50% { transform: translate(-5px, -25px) scale(1); }
+  75% { transform: translate(-15px, -10px) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.animate-orb-drift {
+  animation: orb-drift 12s ease-in-out infinite;
+}
+
+/* Text reveal */
+@keyframes text-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+.animate-text-reveal {
+  animation: text-reveal 0.8s ease forwards;
+}
+
+/* Border glow effect for cards */
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(59, 130, 246, 0.1); }
+  50% { border-color: rgba(59, 130, 246, 0.3); }
+}
+.animate-border-glow {
+  animation: border-glow 3s ease-in-out infinite;
+}
+
+/* Fade up animation (from CURSOR.md spec) */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up          { animation: fade-up 0.5s ease forwards; }
+.animate-fade-up-delay-1  { animation-delay: 100ms; }
+.animate-fade-up-delay-2  { animation-delay: 200ms; }
+.animate-fade-up-delay-3  { animation-delay: 300ms; }
+
+/* Gradient pulse (from CURSOR.md spec) */
+@keyframes gradient-pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.08; }
+  50%       { transform: scale(1.05); opacity: 0.12; }
+}
+.animate-gradient-pulse {
+  animation: gradient-pulse 4s ease-in-out infinite;
+}
+
+/* Underline grow (from CURSOR.md spec) */
+@keyframes underline-grow {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+.animate-underline-grow {
+  animation: underline-grow 0.4s ease forwards;
+}
+
+/* ── Ambient decorative elements ───────────────── */
+
+.ambient-orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+.ambient-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
+  top: 10%;
+  right: -100px;
+}
+
+.ambient-orb-2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(167,139,250,0.05) 0%, transparent 70%);
+  bottom: 20%;
+  left: -80px;
+}
+
+/* Subtle grain texture overlay for depth */
+.grain-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Card hover glow effect for dark theme */
+.card-hover-glow {
+  transition: all 0.3s ease;
+}
+.card-hover-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.08), 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Custom scrollbar for dark theme ────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0f1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* ── Glassmorphism helpers ──────────────────────── */
+
+.glass-nav {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background-color: rgba(10, 15, 26, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.card-dark {
+  background-color: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.75rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-dark:hover {
+  transform: translateY(-4px);
+  border-color: rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.06), 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glow-primary {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+}
+.glow-primary:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  padding: 2px 8px;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+.tag:hover {
+  background-color: rgba(59, 130, 246, 0.2);
 }
 
 @layer components {

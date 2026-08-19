@@ -10,35 +10,44 @@ const latestPosts = (allPosts || []).slice(0, 3)
 ---
 
 <BaseLayout title="Rohail Khan Shinwari — Built for the future.">
+  <!-- Ambient Background Orbs -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute top-[10%] right-[-100px] w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px] animate-orb-drift"></div>
+    <div class="absolute bottom-[20%] left-[-80px] w-[350px] h-[350px] rounded-full bg-secondary/[0.03] blur-[100px] animate-orb-drift" style="animation-delay: -4s;"></div>
+    <div class="absolute top-[60%] right-[20%] w-[250px] h-[250px] rounded-full bg-primary/[0.02] blur-[80px] animate-orb-drift" style="animation-delay: -8s;"></div>
+  </div>
+
   <!-- Hero Section -->
-  <section class="max-w-[1200px] mx-auto px-6 py-[120px] min-h-[819px] flex items-center reveal">
+  <section class="max-w-[1200px] mx-auto px-6 py-[60px] min-h-[300px] flex items-center reveal relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center w-full">
       <!-- Left: Photo -->
       <div class="lg:col-span-5 flex justify-center lg:justify-start relative mb-12 lg:mb-0">
         <div class="absolute inset-0 hero-gradient scale-[1.5] -z-10"></div>
-        <div class="w-[280px] h-[280px] rounded-full border border-outline-variant/20 p-2 overflow-hidden bg-surface">
-          <img
-            src="/images/Rohail_black_proifle.jpeg"
-            alt="Rohail Khan Shinwari"
-            class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500"
-            loading="eager"
-          />
+        <div class="relative">
+          <div class="absolute inset-0 w-[280px] h-[280px] rounded-full bg-gradient-to-br from-primary/20 via-secondary/10 to-primary/5 animate-glow-pulse"></div>
+          <div class="w-[280px] h-[280px] rounded-full border border-white/[0.1] p-2 overflow-hidden bg-surface relative z-10">
+            <img
+              src="/images/Rohail_black_proifle.jpeg"
+              alt="Rohail Khan Shinwari"
+              class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500"
+              loading="eager"
+            />
+          </div>
         </div>
       </div>
 
       <!-- Right: Content -->
       <div class="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left" style="transition-delay: 0.2s;">
         <div class="font-label-caps text-label-caps text-primary bg-primary-container/10 px-3 py-1 rounded-full mb-6 border border-primary/20 inline-block">
-          AI ENGINEER &amp; DESIGNER
-        </div>
+          Creative &amp; Developer </div>
         <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-4">
-          Hi, I'm Rohail Khan Shinwari.
+          Hi, I'm Rohail Khan Shinwari
         </h1>
         <h2 class="font-headline-md text-headline-md text-on-surface-variant mb-6 h-[40px]" id="typewriter-container">
           <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
         </h2>
         <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10">
-          I bridge the gap between complex machine learning models and intuitive human interfaces. Currently exploring the intersection of generative AI and minimalist design systems.
+          3rd-semester AI student building web apps and AI automations — and freelancing both. When I'm not shipping, I'm creating: photography, video, and writing across Instagram, YouTube, X, LinkedIn, Substack, and this blog.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <a
@@ -59,6 +68,8 @@ const latestPosts = (allPosts || []).slice(0, 3)
     </div>
   </section>
 
+  <div class="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-4"></div>
+
   <!-- What I'm Building -->
   <section class="max-w-[1200px] mx-auto px-6 py-12 reveal">
     <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
@@ -70,6 +81,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
           <a
             href={`/projects/${project.slug.current}`}
             class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden"
+            style={`animation-delay: ${(index + 1) * 0.1}s`}
           >
             <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
             <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
@@ -89,7 +101,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
       ) : (
         // Fallback static cards if no projects
         <>
-          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects">
+          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects" style="animation-delay: 0.1s">
             <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
             <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
               <span class="material-symbols-outlined">psychology</span>
@@ -101,7 +113,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
               <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Python</span>
             </div>
           </a>
-          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects">
+          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects" style="animation-delay: 0.2s">
             <div class="absolute bottom-0 right-0 w-32 h-32 border border-outline-variant/20 rounded-tl-full -mb-16 -mr-16 transition-transform group-hover:scale-110"></div>
             <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
               <span class="material-symbols-outlined">data_object</span>
@@ -113,7 +125,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
               <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Figma</span>
             </div>
           </a>
-          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects">
+          <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects" style="animation-delay: 0.3s">
             <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-secondary/5 rounded-full -translate-x-1/2 -translate-y-1/2 scale-0 group-hover:scale-100 transition-transform duration-500"></div>
             <div class="relative z-10">
               <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
@@ -140,6 +152,8 @@ const latestPosts = (allPosts || []).slice(0, 3)
       </a>
     </div>
   </section>
+
+  <div class="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-4"></div>
 
   <!-- Latest Writing -->
   <section class="max-w-[1200px] mx-auto px-6 py-12 reveal">
@@ -218,16 +232,18 @@ const latestPosts = (allPosts || []).slice(0, 3)
     </div>
   </section>
 
+  <div class="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-4"></div>
+
   <!-- About Teaser -->
   <section class="max-w-[1200px] mx-auto px-6 py-12 reveal">
-    <div class="bg-surface-container-low rounded-2xl p-8 md:p-12 border border-outline-variant/10">
+    <div class="bg-surface-container-low rounded-2xl p-8 md:p-12 border border-outline-variant/10 hover:border-primary/30 hover:shadow-[0_0_15px_0] hover:shadow-primary/20 transition-all duration-300">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         <div>
           <h2 class="font-headline-md text-headline-md text-on-surface mb-6">
             <span class="animated-underline">The Philosophy</span>
           </h2>
           <p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
-            I believe that the most advanced technology should feel invisible. My work focuses on stripping away the superficial complexity of AI tools to expose clear, actionable interfaces. Design isn't just how it looks; it's how the system communicates its intent to the user.
+            I don't chase tools — I chase problems. Whether it's an AI automation that saves someone ten hours a week, a web app that finally works the way it should, or a video that explains an idea better than a paragraph ever could — the medium changes, the mindset doesn't. Build it, ship it, learn from it, build the next thing.
           </p>
           <a
             class="inline-flex items-center text-primary font-body-md text-body-md hover:underline group"
@@ -238,23 +254,23 @@ const latestPosts = (allPosts || []).slice(0, 3)
           </a>
         </div>
         <div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/10 font-code-sm text-code-sm">
-          <div class="text-outline mb-4">/* Current Focus */</div>
+          <div class="text-outline mb-4">/* How I Operate */</div>
           <ul class="space-y-3 text-on-surface-variant">
             <li class="flex items-start">
               <span class="text-primary mr-2">→</span>
-              <span>Optimizing local RAG pipelines for lower latency.</span>
+              <span>Build in public. The audience is part of the work.</span>
             </li>
             <li class="flex items-start">
               <span class="text-primary mr-2">→</span>
-              <span>Designing "High-Presence Minimalist" UI patterns.</span>
+              <span>Ship first, polish later — momentum beats perfection.</span>
             </li>
             <li class="flex items-start">
               <span class="text-primary mr-2">→</span>
-              <span>Studying the typography of technical documentation.</span>
+              <span>If it can be automated, it should be.</span>
             </li>
             <li class="flex items-start">
               <span class="text-primary mr-2">→</span>
-              <span>Building robust, self-healing web scrapers.</span>
+              <span>Document the process — someone else needs it too.</span>
             </li>
           </ul>
         </div>
@@ -264,7 +280,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
 </BaseLayout>
 
 <script>
-  // Scroll Reveal Logic
+  // Enhanced Scroll Reveal with stagger
   function reveal() {
     const reveals = document.querySelectorAll(".reveal");
     for (let i = 0; i < reveals.length; i++) {
@@ -273,6 +289,11 @@ const latestPosts = (allPosts || []).slice(0, 3)
       const elementVisible = 100;
       if (elementTop < windowHeight - elementVisible) {
         reveals[i].classList.add("active");
+        // Stagger children animations
+        const children = reveals[i].querySelectorAll('[class*="hover:"]');
+        children.forEach((child, index) => {
+          child.style.transitionDelay = `${index * 80}ms`;
+        });
       }
     }
   }
