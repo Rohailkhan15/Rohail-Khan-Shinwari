@@ -42,9 +42,9 @@ const projects = (await getAllProjects()) || []
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {projects.map((project, index) => (
-        <a href={`/projects/${project.slug.current}`} style={`transition-delay: ${index * 80}ms`}>
+        <div style={`transition-delay: ${index * 80}ms`}>
           <ProjectCard project={project} />
-        </a>
+        </div>
       ))}
     </div>
 
@@ -76,17 +76,16 @@ const projects = (await getAllProjects()) || []
       let visibleCount = 0
 
       cards.forEach(card => {
-        const anchor = card.closest('a')
         if (filter === 'All') {
-          anchor?.classList.remove('hidden')
+          card.classList.remove('hidden')
           visibleCount++
         } else {
           const status = card.getAttribute('data-status')
           if (status?.toLowerCase() === filter?.toLowerCase()) {
-            anchor?.classList.remove('hidden')
+            card.classList.remove('hidden')
             visibleCount++
           } else {
-            anchor?.classList.add('hidden')
+            card.classList.add('hidden')
           }
         }
       })

@@ -8,11 +8,11 @@ interface Props {
 const { product } = Astro.props
 ---
 
-<div class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" data-status={product.status}>
-  <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-  
+<div class="group relative flex h-[360px] w-full flex-col rounded-2xl border border-outline-variant/10 bg-surface-container-lowest p-8 hover:border-primary/30 transition-all hover:-translate-y-1 overflow-hidden" data-status={product.status}>
+  <a href={`/products/${product.slug.current}`} class="absolute inset-0 z-0 rounded-2xl" aria-label={`View ${product.title}`}></a>
+
   <!-- Status Badge -->
-  <div class="mb-4 flex items-center gap-3">
+  <div class="relative z-10 mb-4 flex shrink-0 items-center gap-3">
     <span class="font-label-caps text-label-caps bg-primary-container/10 text-primary px-3 py-1 rounded-full border border-primary/20">
       {product.status}
     </span>
@@ -24,43 +24,46 @@ const { product } = Astro.props
   </div>
 
   <!-- Title -->
-  <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{product.title}</h3>
+  <h3 class="relative z-10 font-headline-sm text-headline-sm text-on-surface line-clamp-2 group-hover:text-primary transition-colors shrink-0">
+    {product.title}
+  </h3>
 
   <!-- Description -->
-  <p class="font-body-md text-body-md text-on-surface-variant mb-6">{product.description}</p>
+  <p class="relative z-10 mt-3 font-body-md text-body-md text-on-surface-variant line-clamp-2 shrink-0">{product.description}</p>
 
-  <!-- Tags -->
-  <div class="flex gap-2 mt-auto mb-6">
-    {(product.tags || []).slice(0, 3).map(tag => (
-      <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">
-        {tag}
-      </span>
-    ))}
-  </div>
+  <!-- Tags & Links -->
+  <div class="relative z-10 mt-auto shrink-0 pt-4">
+    <div class="flex h-7 flex-wrap gap-2 overflow-hidden">
+      {(product.tags || []).slice(0, 3).map(tag => (
+        <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">
+          {tag}
+        </span>
+      ))}
+    </div>
 
-  <!-- Links -->
-  <div class="flex gap-3">
-    {product.productUrl && (
-      <a
-        href={product.productUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="font-label-caps text-[11px] bg-primary-container/10 text-primary px-2.5 py-1 rounded-full border border-primary/20 hover:bg-primary-container/20 transition-colors flex items-center gap-1"
-      >
-        <span class="material-symbols-outlined text-[14px]">open_in_new</span>
-        View Product
-      </a>
-    )}
-    {product.github && (
-      <a
-        href={product.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="font-label-caps text-[11px] bg-primary-container/10 text-primary px-2.5 py-1 rounded-full border border-primary/20 hover:bg-primary-container/20 transition-colors flex items-center gap-1"
-      >
-        <span class="material-symbols-outlined text-[14px]">code</span>
-        GitHub
-      </a>
-    )}
+    <div class="mt-4 flex gap-3">
+      {product.productUrl && (
+        <a
+          href={product.productUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative z-10 font-label-caps text-[11px] bg-primary-container/10 text-primary px-2.5 py-1 rounded-full border border-primary/20 hover:bg-primary-container/20 transition-colors flex items-center gap-1"
+        >
+          <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+          View Product
+        </a>
+      )}
+      {product.github && (
+        <a
+          href={product.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative z-10 font-label-caps text-[11px] bg-primary-container/10 text-primary px-2.5 py-1 rounded-full border border-primary/20 hover:bg-primary-container/20 transition-colors flex items-center gap-1"
+        >
+          <span class="material-symbols-outlined text-[14px]">code</span>
+          GitHub
+        </a>
+      )}
+    </div>
   </div>
 </div>

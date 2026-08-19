@@ -42,9 +42,7 @@ const products = (await getAllProducts()) || []
     <!-- Products Grid -->
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {products.map(product => (
-        <a href={`/products/${product.slug.current}`}>
-          <ProductCard product={product} />
-        </a>
+        <ProductCard product={product} />
       ))}
     </div>
 
@@ -84,17 +82,16 @@ const products = (await getAllProducts()) || []
       let visibleCount = 0
 
       cards.forEach(card => {
-        const anchor = card.closest('a')
         if (filter === 'All') {
-          anchor?.classList.remove('hidden')
+          card.classList.remove('hidden')
           visibleCount++
         } else {
           const status = card.getAttribute('data-status')
           if (status?.toLowerCase() === filter?.toLowerCase()) {
-            anchor?.classList.remove('hidden')
+            card.classList.remove('hidden')
             visibleCount++
           } else {
-            anchor?.classList.add('hidden')
+            card.classList.add('hidden')
           }
         }
       })
