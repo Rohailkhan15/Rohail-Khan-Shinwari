@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import { getPostBySlug, getAllPosts, urlFor, type BlogPost } from '../../lib/sanity'
+import { getPostBySlug, getAllPosts, type BlogPost } from '../../lib/sanity'
 import { toHTML } from '@portabletext/to-html'
 
 export async function getStaticPaths() {
@@ -23,7 +23,6 @@ const categoryColors = {
   'Micro-thought': 'bg-orange-100 text-orange-700',
 }
 
-const imageUrl = post.coverImage ? urlFor(post.coverImage).url() : null
 const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -38,10 +37,6 @@ const portableTextComponents = {
     h3: ({ children }: any) => `<h3 class="text-xl font-bold mb-4">${children}</h3>`,
   },
   types: {
-    image: ({ value }: any) => {
-      const imgUrl = urlFor(value).url()
-      return `<img src="${imgUrl}" alt="" class="my-6 rounded-xl w-full" loading="lazy" />`
-    },
     code: ({ value }: any) => {
       return `<pre class="my-4 overflow-x-auto rounded-lg bg-surface p-4"><code class="font-mono text-sm">${value.code}</code></pre>`
     },
@@ -95,18 +90,6 @@ const bodyHtml = post.body ? toHTML(post.body, { components: portableTextCompone
         <h1 class="font-display text-4xl font-bold md:text-5xl">{post.title}</h1>
         <p class="mt-4 text-lg text-muted">{post.excerpt}</p>
       </header>
-
-      <!-- Cover Image -->
-      {imageUrl && (
-        <div class="mt-8 aspect-video overflow-hidden rounded-2xl bg-surface">
-          <img
-            src={imageUrl}
-            alt={post.title}
-            class="h-full w-full object-cover"
-            loading="eager"
-          />
-        </div>
-      )}
 
       <!-- Body Content -->
       <div class="prose prose-lg mt-12 max-w-none text-text">

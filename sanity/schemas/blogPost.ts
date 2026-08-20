@@ -33,14 +33,6 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    },
-    {
       name: 'category',
       title: 'Category',
       type: 'string',
@@ -48,7 +40,6 @@ export default {
         list: [
           { title: 'Essay', value: 'Essay' },
           { title: 'Build Log', value: 'Build Log' },
-          { title: 'Research', value: 'Research' },
           { title: 'Micro-thought', value: 'Micro-thought' },
         ],
       },
@@ -86,7 +77,6 @@ export default {
   preview: {
     select: {
       title: 'title',
-      media: 'coverImage',
     },
   },
 }

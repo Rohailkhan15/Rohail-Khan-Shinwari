@@ -4,7 +4,7 @@ export interface Project {
   description: string
   longDescription: string
   tags: string[]
-  status: 'live' | 'building' | 'concept'
+  status: 'live' | 'building'
   github?: string
   demo?: string
   image?: string
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     description: 'Obsidian + Discord bot + Groq for knowledge management',
     longDescription: 'A personal knowledge management system that combines Obsidian for note-taking, a Discord bot for quick capture and retrieval, and Groq for AI-powered insights. The system helps organize thoughts, connect ideas, and leverage AI to discover patterns in your knowledge base.',
     tags: ['AI', 'Productivity', 'Discord'],
-    status: 'concept',
+    status: 'building',
     featured: true,
     date: '2024-02-01',
   },

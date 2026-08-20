@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { getAllProducts, getProductBySlug } from '../../lib/sanity'
 import type { Product } from '../../lib/sanity'
-import { urlFor } from '../../lib/sanity'
 
 export async function getStaticPaths() {
   const products = (await getAllProducts()) || []
@@ -21,10 +20,7 @@ if (!product) {
 const statusColors = {
   live: 'bg-green-100 text-green-700',
   building: 'bg-yellow-100 text-yellow-700',
-  concept: 'bg-gray-100 text-gray-700',
 }
-
-const imageUrl = product.coverImage ? urlFor(product.coverImage).url() : null
 ---
 
 <BaseLayout title={`${product.title} — Product`}>
@@ -68,18 +64,6 @@ const imageUrl = product.coverImage ? urlFor(product.coverImage).url() : null
         <h1 class="font-display text-4xl font-bold md:text-5xl">{product.title}</h1>
         <p class="mt-4 text-lg text-muted">{product.description}</p>
       </div>
-
-      <!-- Cover Image -->
-      {imageUrl && (
-        <div class="mt-8 aspect-video overflow-hidden rounded-2xl bg-surface">
-          <img
-            src={imageUrl}
-            alt={product.title}
-            class="h-full w-full object-cover"
-            loading="eager"
-          />
-        </div>
-      )}
 
       <!-- Tags -->
       <div class="mt-6 flex flex-wrap gap-2">

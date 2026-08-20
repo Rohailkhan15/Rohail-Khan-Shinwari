@@ -20,13 +20,7 @@ export interface BlogPost {
   slug: { current: string }
   publishedAt: string
   excerpt: string
-  coverImage?: {
-    asset: {
-      _ref: string
-      _type: string
-    }
-  }
-  category: 'Essay' | 'Build Log' | 'Research' | 'Micro-thought'
+  category: 'Essay' | 'Build Log' | 'Micro-thought'
   tags: string[]
   body: any[]
   readingTime?: number
@@ -38,13 +32,7 @@ export interface Project {
   slug: { current: string }
   description: string
   longDescription: string
-  coverImage?: {
-    asset: {
-      _ref: string
-      _type: string
-    }
-  }
-  status: 'live' | 'building' | 'concept'
+  status: 'live' | 'building'
   tags: string[]
   github?: string
   demo?: string
@@ -58,13 +46,7 @@ export interface Product {
   slug: { current: string }
   description: string
   longDescription: string
-  coverImage?: {
-    asset: {
-      _ref: string
-      _type: string
-    }
-  }
-  status: 'live' | 'building' | 'concept'
+  status: 'live' | 'building'
   tags: string[]
   productUrl?: string
   github?: string
@@ -80,7 +62,6 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     slug,
     publishedAt,
     excerpt,
-    coverImage,
     category,
     tags,
     readingTime
@@ -96,7 +77,6 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     slug,
     publishedAt,
     excerpt,
-    coverImage,
     category,
     tags,
     body,
@@ -113,7 +93,6 @@ export async function getPostsByCategory(category: string): Promise<BlogPost[]> 
     slug,
     publishedAt,
     excerpt,
-    coverImage,
     category,
     tags,
     readingTime
@@ -129,7 +108,6 @@ export async function getAllProjects(): Promise<Project[]> {
     slug,
     description,
     longDescription,
-    coverImage,
     status,
     tags,
     github,
@@ -148,7 +126,6 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     slug,
     description,
     longDescription,
-    coverImage,
     status,
     tags,
     github,
@@ -167,7 +144,6 @@ export async function getAllProducts(): Promise<Product[]> {
     slug,
     description,
     longDescription,
-    coverImage,
     status,
     tags,
     productUrl,
@@ -187,7 +163,6 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
     slug,
     description,
     longDescription,
-    coverImage,
     status,
     tags,
     productUrl,
