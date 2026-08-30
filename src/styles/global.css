@@ -84,8 +84,14 @@
 }
 
 @layer base {
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-on-background font-body;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
   }
 
   h1,
@@ -201,13 +207,20 @@
   }
 
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
   }
 
   /* Hero gradient — dark theme */
   .hero-gradient {
-    background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, rgba(10,15,26,0) 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(10, 15, 26, 0) 70%);
   }
 }
 
@@ -215,103 +228,209 @@
 
 /* Gentle floating animation */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
 /* Subtle shimmer/glow pulse for accents */
 @keyframes glow-pulse {
-  0%, 100% { opacity: 0.4; filter: blur(20px); }
-  50% { opacity: 0.7; filter: blur(30px); }
+
+  0%,
+  100% {
+    opacity: 0.4;
+    filter: blur(20px);
+  }
+
+  50% {
+    opacity: 0.7;
+    filter: blur(30px);
+  }
 }
+
 .animate-glow-pulse {
   animation: glow-pulse 4s ease-in-out infinite;
 }
 
 /* Staggered fade-in from left */
 @keyframes fade-in-left {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
+
 .animate-fade-in-left {
   animation: fade-in-left 0.6s ease forwards;
 }
 
 /* Staggered fade-in from right */
 @keyframes fade-in-right {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
+
 .animate-fade-in-right {
   animation: fade-in-right 0.6s ease forwards;
 }
 
 /* Scale in animation */
 @keyframes scale-in {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+
 .animate-scale-in {
   animation: scale-in 0.5s ease forwards;
 }
 
 /* Ambient orb floating */
 @keyframes orb-drift {
-  0% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(10px, -15px) scale(1.05); }
-  50% { transform: translate(-5px, -25px) scale(1); }
-  75% { transform: translate(-15px, -10px) scale(0.95); }
-  100% { transform: translate(0, 0) scale(1); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(10px, -15px) scale(1.05);
+  }
+
+  50% {
+    transform: translate(-5px, -25px) scale(1);
+  }
+
+  75% {
+    transform: translate(-15px, -10px) scale(0.95);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
 }
+
 .animate-orb-drift {
   animation: orb-drift 12s ease-in-out infinite;
 }
 
 /* Text reveal */
 @keyframes text-reveal {
-  from { clip-path: inset(0 100% 0 0); }
-  to { clip-path: inset(0 0 0 0); }
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
 }
+
 .animate-text-reveal {
   animation: text-reveal 0.8s ease forwards;
 }
 
 /* Border glow effect for cards */
 @keyframes border-glow {
-  0%, 100% { border-color: rgba(59, 130, 246, 0.1); }
-  50% { border-color: rgba(59, 130, 246, 0.3); }
+
+  0%,
+  100% {
+    border-color: rgba(59, 130, 246, 0.1);
+  }
+
+  50% {
+    border-color: rgba(59, 130, 246, 0.3);
+  }
 }
+
 .animate-border-glow {
   animation: border-glow 3s ease-in-out infinite;
 }
 
 /* Fade up animation (from CURSOR.md spec) */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.animate-fade-up          { animation: fade-up 0.5s ease forwards; }
-.animate-fade-up-delay-1  { animation-delay: 100ms; }
-.animate-fade-up-delay-2  { animation-delay: 200ms; }
-.animate-fade-up-delay-3  { animation-delay: 300ms; }
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease forwards;
+}
+
+.animate-fade-up-delay-1 {
+  animation-delay: 100ms;
+}
+
+.animate-fade-up-delay-2 {
+  animation-delay: 200ms;
+}
+
+.animate-fade-up-delay-3 {
+  animation-delay: 300ms;
+}
 
 /* Gradient pulse (from CURSOR.md spec) */
 @keyframes gradient-pulse {
-  0%, 100% { transform: scale(1);    opacity: 0.08; }
-  50%       { transform: scale(1.05); opacity: 0.12; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.08;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.12;
+  }
 }
+
 .animate-gradient-pulse {
   animation: gradient-pulse 4s ease-in-out infinite;
 }
 
 /* Underline grow (from CURSOR.md spec) */
 @keyframes underline-grow {
-  from { width: 0; }
-  to   { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
+
 .animate-underline-grow {
   animation: underline-grow 0.4s ease forwards;
 }
@@ -329,7 +448,7 @@
 .ambient-orb-1 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
   top: 10%;
   right: -100px;
 }
@@ -337,7 +456,7 @@
 .ambient-orb-2 {
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, rgba(167,139,250,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.05) 0%, transparent 70%);
   bottom: 20%;
   left: -80px;
 }
@@ -357,6 +476,7 @@
 .card-hover-glow {
   transition: all 0.3s ease;
 }
+
 .card-hover-glow:hover {
   box-shadow: 0 0 30px rgba(59, 130, 246, 0.08), 0 8px 32px rgba(0, 0, 0, 0.3);
 }
@@ -366,13 +486,16 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #0a0f1a;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
@@ -392,6 +515,7 @@
   border-radius: 0.75rem;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
 .card-dark:hover {
   transform: translateY(-4px);
   border-color: rgba(59, 130, 246, 0.2);
@@ -401,6 +525,7 @@
 .glow-primary {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
 }
+
 .glow-primary:hover {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
 }
@@ -417,6 +542,7 @@
   border-radius: 2px;
   transition: background-color 0.2s ease;
 }
+
 .tag:hover {
   background-color: rgba(59, 130, 246, 0.2);
 }
@@ -472,5 +598,40 @@
 
   .prose pre code {
     @apply bg-transparent px-0 py-0 text-text;
+  }
+}
+
+/* ── Mobile-specific responsive fixes ────────────── */
+
+@media (max-width: 480px) {
+  .font-headline-md {
+    font-size: 24px;
+  }
+
+  .font-headline-sm {
+    font-size: 18px;
+  }
+
+  .font-body-lg {
+    font-size: 16px;
+  }
+
+  /* Prevent ambient orbs from causing overflow */
+  .ambient-orb-1,
+  .ambient-orb-2 {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+
+  /* Reduce card padding on small screens */
+  .card-dark {
+    padding: 1rem;
+  }
+
+  /* Ensure section headings don't overflow */
+  .animated-underline {
+    word-break: break-word;
   }
 }

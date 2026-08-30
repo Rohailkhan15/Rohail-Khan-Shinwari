@@ -18,14 +18,14 @@ const latestPosts = (allPosts || []).slice(0, 3)
   </div>
 
   <!-- Hero Section -->
-  <section class="max-w-[1200px] mx-auto px-6 py-[60px] min-h-[300px] flex items-center reveal relative z-10">
+  <section class="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-[60px] min-h-0 md:min-h-[300px] flex items-center reveal relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center w-full">
       <!-- Left: Photo -->
-      <div class="lg:col-span-5 flex justify-center lg:justify-start relative mb-12 lg:mb-0">
+      <div class="lg:col-span-5 flex justify-center lg:justify-start relative mb-8 lg:mb-0">
         <div class="absolute inset-0 hero-gradient scale-[1.5] -z-10"></div>
         <div class="relative">
-          <div class="absolute inset-0 w-[280px] h-[280px] rounded-full bg-gradient-to-br from-primary/20 via-secondary/10 to-primary/5 animate-glow-pulse"></div>
-          <div class="w-[280px] h-[280px] rounded-full border border-white/[0.1] p-2 overflow-hidden bg-surface relative z-10">
+          <div class="absolute inset-0 w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] rounded-full bg-gradient-to-br from-primary/20 via-secondary/10 to-primary/5 animate-glow-pulse"></div>
+          <div class="w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] rounded-full border border-white/[0.1] p-2 overflow-hidden bg-surface relative z-10">
             <img
               src="/images/Rohail_black_proifle.jpeg"
               alt="Rohail Khan Shinwari"
@@ -40,16 +40,16 @@ const latestPosts = (allPosts || []).slice(0, 3)
       <div class="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left" style="transition-delay: 0.2s;">
         <div class="font-label-caps text-label-caps text-primary bg-primary-container/10 px-3 py-1 rounded-full mb-6 border border-primary/20 inline-block">
           Creative &amp; Developer </div>
-        <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-4">
+        <h1 class="font-display text-[28px] leading-tight sm:text-[36px] md:text-[48px] lg:text-[64px] font-bold tracking-tight text-on-surface mb-4">
           Hi, I'm Rohail Khan Shinwari
         </h1>
-        <h2 class="font-headline-md text-headline-md text-on-surface-variant mb-6 h-[40px]" id="typewriter-container">
+        <h2 class="font-display text-lg sm:text-xl md:text-2xl text-on-surface-variant mb-6 h-[32px] sm:h-[40px]" id="typewriter-container">
           <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
         </h2>
-        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10">
+        <p class="font-body text-sm sm:text-base md:text-lg text-on-surface-variant max-w-xl mb-8 sm:mb-10">
           3rd-semester AI student building web apps and AI automations — and freelancing both. When I'm not shipping, I'm creating: photography, video, and writing across Instagram, YouTube, X, LinkedIn, Substack, and this blog.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
           <a
             class="inline-flex justify-center items-center bg-primary text-on-primary px-8 py-4 rounded-full font-body-md text-body-md hover:bg-on-primary-fixed-variant transition-colors group"
             href="/projects"
@@ -71,7 +71,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
   <div class="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-4"></div>
 
   <!-- What I'm Building -->
-  <section class="max-w-[1200px] mx-auto px-6 py-12 reveal">
+  <section class="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-12 reveal">
     <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
       <span class="animated-underline">What I'm Building</span>
     </h2>
@@ -89,9 +89,9 @@ const latestPosts = (allPosts || []).slice(0, 3)
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{project.title}</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6">{project.description}</p>
-            <div class="flex gap-2 mt-auto">
+            <div class="flex flex-wrap gap-2 mt-auto">
               {(project.tags || []).slice(0, 2).map(tag => (
-                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">
+                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">
                   {tag}
                 </span>
               ))}
@@ -108,9 +108,9 @@ const latestPosts = (allPosts || []).slice(0, 3)
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">NeuroCanvas</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6">A visual node-based editor for orchestrating local LLM pipelines.</p>
-            <div class="flex gap-2 mt-auto">
-              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">React</span>
-              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Python</span>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">React</span>
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">Python</span>
             </div>
           </a>
           <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects" style="animation-delay: 0.2s">
@@ -120,9 +120,9 @@ const latestPosts = (allPosts || []).slice(0, 3)
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Syntax UI</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6">A minimalist design system for technical dashboards.</p>
-            <div class="flex gap-2 mt-auto">
-              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Tailwind</span>
-              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Figma</span>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">Tailwind</span>
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">Figma</span>
             </div>
           </a>
           <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects" style="animation-delay: 0.3s">
@@ -133,9 +133,9 @@ const latestPosts = (allPosts || []).slice(0, 3)
               </div>
               <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Echo Bot</h3>
               <p class="font-body-md text-body-md text-on-surface-variant mb-6">An autonomous research agent for documentation synthesis.</p>
-              <div class="flex gap-2 mt-auto">
-                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">LangChain</span>
-                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">TypeScript</span>
+              <div class="flex flex-wrap gap-2 mt-auto">
+                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">LangChain</span>
+                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">TypeScript</span>
               </div>
             </div>
           </a>
@@ -156,7 +156,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
   <div class="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-4"></div>
 
   <!-- Latest Writing -->
-  <section class="max-w-[1200px] mx-auto px-6 py-12 reveal">
+  <section class="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-12 reveal">
     <h2 class="font-headline-md text-headline-md text-on-surface mb-12">
       <span class="animated-underline">From the Blog</span>
     </h2>
@@ -173,8 +173,8 @@ const latestPosts = (allPosts || []).slice(0, 3)
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{post.title}</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">{post.excerpt}</p>
-            <div class="flex gap-2 mt-auto">
-              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">
                 {post.category}
               </span>
             </div>
@@ -190,8 +190,8 @@ const latestPosts = (allPosts || []).slice(0, 3)
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">The Future of AI Interfaces</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Exploring how generative AI is reshaping the way we interact with software.</p>
-            <div class="flex gap-2 mt-auto">
-              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Essay</span>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">Essay</span>
             </div>
           </a>
           <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/blog">
@@ -201,8 +201,8 @@ const latestPosts = (allPosts || []).slice(0, 3)
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Building with Astro</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">A deep dive into building performant static sites with Astro.</p>
-            <div class="flex gap-2 mt-auto">
-              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Build Log</span>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">Build Log</span>
             </div>
           </a>
           <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/blog">
@@ -213,8 +213,8 @@ const latestPosts = (allPosts || []).slice(0, 3)
               </div>
               <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Design Systems 101</h3>
               <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Creating scalable and maintainable design systems for modern web applications.</p>
-              <div class="flex gap-2 mt-auto">
-                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full">Essay</span>
+              <div class="flex flex-wrap gap-2 mt-auto">
+                <span class="font-label-caps text-label-caps bg-surface-variant text-on-surface px-2 py-1 rounded-full whitespace-nowrap">Essay</span>
               </div>
             </div>
           </a>
@@ -235,8 +235,8 @@ const latestPosts = (allPosts || []).slice(0, 3)
   <div class="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-4"></div>
 
   <!-- About Teaser -->
-  <section class="max-w-[1200px] mx-auto px-6 py-12 reveal">
-    <div class="bg-surface-container-low rounded-2xl p-8 md:p-12 border border-outline-variant/10 hover:border-primary/30 hover:shadow-[0_0_15px_0] hover:shadow-primary/20 transition-all duration-300">
+  <section class="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-12 reveal">
+    <div class="bg-surface-container-low rounded-2xl p-5 sm:p-8 md:p-12 border border-outline-variant/10 hover:border-primary/30 hover:shadow-[0_0_15px_0] hover:shadow-primary/20 transition-all duration-300">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         <div>
           <h2 class="font-headline-md text-headline-md text-on-surface mb-6">
@@ -253,23 +253,23 @@ const latestPosts = (allPosts || []).slice(0, 3)
             <span class="material-symbols-outlined ml-1 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </a>
         </div>
-        <div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/10 font-code-sm text-code-sm">
+        <div class="bg-surface-container-lowest rounded-xl p-4 sm:p-6 border border-outline-variant/10 font-code-sm text-xs sm:text-sm overflow-x-hidden">
           <div class="text-outline mb-4">/* How I Operate */</div>
-          <ul class="space-y-3 text-on-surface-variant">
+          <ul class="space-y-3 text-on-surface-variant break-words">
             <li class="flex items-start">
-              <span class="text-primary mr-2">→</span>
+              <span class="text-primary mr-2 flex-shrink-0">→</span>
               <span>Build in public. The audience is part of the work.</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary mr-2">→</span>
+              <span class="text-primary mr-2 flex-shrink-0">→</span>
               <span>Ship first, polish later — momentum beats perfection.</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary mr-2">→</span>
+              <span class="text-primary mr-2 flex-shrink-0">→</span>
               <span>If it can be automated, it should be.</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary mr-2">→</span>
+              <span class="text-primary mr-2 flex-shrink-0">→</span>
               <span>Document the process — someone else needs it too.</span>
             </li>
           </ul>

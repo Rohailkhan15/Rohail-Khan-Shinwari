@@ -14,8 +14,8 @@ const currentPath = Astro.url.pathname
   id="navbar"
   class="fixed top-0 w-full z-50 bg-transparent border-b border-transparent transition-all duration-500"
 >
-  <div class="flex justify-between items-center px-6 py-4 max-w-[1200px] mx-auto md:px-6">
-    <a href="/" class="font-headline-md text-headline-md font-bold text-[#e2e8f0] hover:text-[#3b82f6] transition-colors duration-300">
+  <div class="flex justify-between items-center px-4 sm:px-6 py-4 max-w-[1200px] mx-auto">
+    <a href="/" class="font-display text-lg sm:text-xl md:text-2xl font-bold text-[#e2e8f0] hover:text-[#3b82f6] transition-colors duration-300 truncate mr-4">
       Rohail Khan Shinwari
     </a>
 
@@ -27,7 +27,7 @@ const currentPath = Astro.url.pathname
         return (
           <a
             href={link.href}
-            class={`nav-link font-body-md text-body-md md:font-headline-sm md:text-headline-sm transition-colors duration-300 ${
+            class={`nav-link font-body text-sm md:text-base transition-colors duration-300 whitespace-nowrap ${
               isActive 
                 ? 'text-[#3b82f6]' 
                 : 'text-[#94a3b8] hover:text-[#3b82f6]'
