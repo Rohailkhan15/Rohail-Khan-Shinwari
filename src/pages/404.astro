@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Icon from '../components/Icon.astro'
+---
+
+<BaseLayout
+  title="Page Not Found | Rohail Khan Shinwari"
+  description="The page you're looking for doesn't exist. Head back to the homepage to explore projects, products, and blog posts by Rohail Khan Shinwari."
+>
+  <section class="max-w-[800px] mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
+    <div class="font-label-caps text-label-caps text-primary bg-primary-container/10 px-3 py-1 rounded-full mb-6 border border-primary/20 inline-block">
+      404 — PAGE NOT FOUND
+    </div>
+    <h1 class="font-display text-[28px] leading-tight sm:text-[36px] md:text-[48px] font-bold text-on-surface mb-6">
+      This page drifted off into space.
+    </h1>
+    <p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto mb-10">
+      The page you're looking for doesn't exist or may have been moved. Let's get you back on track.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+      <a
+        class="inline-flex justify-center items-center bg-primary text-on-primary px-8 py-4 rounded-full font-body-md text-body-md hover:bg-on-primary-fixed-variant transition-colors group"
+        href="/"
+      >
+        Back to Home
+        <Icon name="arrow-forward" class="ml-2 group-hover:translate-x-1 transition-transform" />
+      </a>
+      <a
+        class="inline-flex justify-center items-center bg-transparent border-2 border-primary text-primary px-8 py-4 rounded-full font-body-md text-body-md hover:bg-primary/5 transition-colors"
+        href="/blog"
+      >
+        Read the Blog
+      </a>
+    </div>
+  </section>
+</BaseLayout>
