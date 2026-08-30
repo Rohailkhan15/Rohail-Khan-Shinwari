@@ -1,17 +1,29 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import { getPostBySlug, getAllPosts, type BlogPost } from '../../lib/sanity'
+import { sanityClient, type BlogPost } from '../../lib/sanity'
 import { toHTML } from '@portabletext/to-html'
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts()
-  return posts.map((post) => ({
+  // One query for all posts (including body) instead of N+1 per-slug fetches.
+  // Data is passed via props, so each page renders without extra requests.
+  const posts: BlogPost[] = await sanityClient.fetch(`*[_type == "blogPost"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    publishedAt,
+    excerpt,
+    category,
+    tags,
+    body,
+    readingTime
+  }`)
+  return (posts || []).map((post) => ({
     params: { slug: post.slug.current },
+    props: { post },
   }))
 }
 
-const { slug } = Astro.params
-const post = await getPostBySlug(slug)
+const { post } = Astro.props as { post: BlogPost }
 
 if (!post) {
   return Astro.redirect('/404')
@@ -49,9 +61,36 @@ const portableTextComponents = {
 }
 
 const bodyHtml = post.body ? toHTML(post.body, { components: portableTextComponents }) : '<p>No content</p>'
+
+// BlogPosting structured data for rich results
+const postURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href
+const wordCount = (post.body || [])
+  .flatMap((block: any) => (block.children || []).map((child: any) => child.text ?? ''))
+  .join(' ')
+  .split(/\s+/)
+  .filter(Boolean)
+  .length
+const blogPostingJsonLd = {
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.excerpt,
+  datePublished: post.publishedAt,
+  articleSection: post.category,
+  keywords: (post.tags || []).join(', '),
+  wordCount,
+  author: { '@type': 'Person', name: 'Rohail Khan Shinwari' },
+  publisher: { '@type': 'Person', name: 'Rohail Khan Shinwari' },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': postURL },
+}
 ---
 
-<BaseLayout title={`${post.title} — Blog`}>
+<BaseLayout
+  title={`${post.title} — Blog | Rohail Khan Shinwari`}
+  description={post.excerpt}
+  type="article"
+  publishedAt={post.publishedAt}
+  extraJsonLd={blogPostingJsonLd}
+>
   <article class="py-8 sm:py-12 md:py-16">
     <div class="mx-auto max-w-4xl px-4 sm:px-6">
       <!-- Back Link -->

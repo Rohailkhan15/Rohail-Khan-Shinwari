@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import Icon from '../components/Icon.astro'
 import { getAllProjects, getAllPosts } from '../lib/sanity'
 
-const allProjects = await getAllProjects()
+// Fetch both collections in parallel instead of sequentially
+const [allProjects, allPosts] = await Promise.all([getAllProjects(), getAllPosts()])
 const featuredProjects = (allProjects || []).filter(p => p.featured).slice(0, 3)
-
-const allPosts = await getAllPosts()
 const latestPosts = (allPosts || []).slice(0, 3)
 ---
 
@@ -29,10 +29,12 @@ const latestPosts = (allPosts || []).slice(0, 3)
             <img
               src="/images/Rohail_black_proifle.jpeg"
               alt="Rohail Khan Shinwari"
+              width="280"
+              height="280"
               class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500"
               loading="eager"
               fetchpriority="high"
-              decoding="sync"
+              decoding="async"
             />
           </div>
         </div>
@@ -57,7 +59,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
             href="/projects"
           >
             View Projects
-            <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+            <Icon name="arrow-right-alt" class="ml-2 group-hover:translate-x-1 transition-transform" />
           </a>
           <a
             class="inline-flex justify-center items-center bg-transparent border-2 border-primary text-primary px-8 py-4 rounded-full font-body-md text-body-md hover:bg-primary/5 transition-colors"
@@ -87,7 +89,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
           >
             <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
             <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
-              <span class="material-symbols-outlined">psychology</span>
+              <Icon name="psychology" />
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{project.title}</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6">{project.description}</p>
@@ -106,7 +108,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
           <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects" style="animation-delay: 0.1s">
             <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
             <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
-              <span class="material-symbols-outlined">psychology</span>
+              <Icon name="psychology" />
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">NeuroCanvas</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6">A visual node-based editor for orchestrating local LLM pipelines.</p>
@@ -118,7 +120,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
           <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/projects" style="animation-delay: 0.2s">
             <div class="absolute bottom-0 right-0 w-32 h-32 border border-outline-variant/20 rounded-tl-full -mb-16 -mr-16 transition-transform group-hover:scale-110"></div>
             <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
-              <span class="material-symbols-outlined">data_object</span>
+              <Icon name="data-object" />
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Syntax UI</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6">A minimalist design system for technical dashboards.</p>
@@ -131,7 +133,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
             <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-secondary/5 rounded-full -translate-x-1/2 -translate-y-1/2 scale-0 group-hover:scale-100 transition-transform duration-500"></div>
             <div class="relative z-10">
               <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
-                <span class="material-symbols-outlined">robot_2</span>
+                <Icon name="robot" />
               </div>
               <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Echo Bot</h3>
               <p class="font-body-md text-body-md text-on-surface-variant mb-6">An autonomous research agent for documentation synthesis.</p>
@@ -150,7 +152,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
         href="/projects"
       >
         View all projects
-        <span class="material-symbols-outlined ml-1 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        <Icon name="arrow-forward" size={18} class="ml-1 group-hover:translate-x-1 transition-transform" />
       </a>
     </div>
   </section>
@@ -171,7 +173,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
           >
             <div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
             <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-              <span class="material-symbols-outlined">article</span>
+              <Icon name="article" />
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">{post.title}</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">{post.excerpt}</p>
@@ -188,7 +190,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
           <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/blog">
             <div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-[100px] -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
             <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-              <span class="material-symbols-outlined">article</span>
+              <Icon name="article" />
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">The Future of AI Interfaces</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Exploring how generative AI is reshaping the way we interact with software.</p>
@@ -199,7 +201,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
           <a class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-8 hover:border-primary/30 transition-all hover:-translate-y-1 relative overflow-hidden" href="/blog">
             <div class="absolute bottom-0 right-0 w-32 h-32 border border-outline-variant/20 rounded-tl-full -mb-16 -mr-16 transition-transform group-hover:scale-110"></div>
             <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-              <span class="material-symbols-outlined">edit_note</span>
+              <Icon name="edit-note" />
             </div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Building with Astro</h3>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">A deep dive into building performant static sites with Astro.</p>
@@ -211,7 +213,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
             <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-secondary/5 rounded-full -translate-x-1/2 -translate-y-1/2 scale-0 group-hover:scale-100 transition-transform duration-500"></div>
             <div class="relative z-10">
               <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
-                <span class="material-symbols-outlined">auto_stories</span>
+                <Icon name="book" />
               </div>
               <h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Design Systems 101</h3>
               <p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">Creating scalable and maintainable design systems for modern web applications.</p>
@@ -229,7 +231,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
         href="/blog"
       >
         Read all posts
-        <span class="material-symbols-outlined ml-1 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        <Icon name="arrow-forward" size={18} class="ml-1 group-hover:translate-x-1 transition-transform" />
       </a>
     </div>
   </section>
@@ -252,7 +254,7 @@ const latestPosts = (allPosts || []).slice(0, 3)
             href="/about"
           >
             More about me
-            <span class="material-symbols-outlined ml-1 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <Icon name="arrow-forward" size={18} class="ml-1 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
         <div class="bg-surface-container-lowest rounded-xl p-4 sm:p-6 border border-outline-variant/10 font-code-sm text-xs sm:text-sm overflow-x-hidden">
@@ -282,26 +284,26 @@ const latestPosts = (allPosts || []).slice(0, 3)
 </BaseLayout>
 
 <script>
-  // Enhanced Scroll Reveal with stagger
-  function reveal() {
-    const reveals = document.querySelectorAll(".reveal");
-    for (let i = 0; i < reveals.length; i++) {
-      const windowHeight = window.innerHeight;
-      const elementTop = reveals[i].getBoundingClientRect().top;
-      const elementVisible = 100;
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add("active");
-        // Stagger children animations
-        const children = reveals[i].querySelectorAll('[class*="hover:"]');
-        children.forEach((child, index) => {
-          child.style.transitionDelay = `${index * 80}ms`;
-        });
-      }
-    }
+  // Scroll reveal via IntersectionObserver — no scroll listeners, no layout
+  // reads per frame, and content is never hidden when JS is unavailable.
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          // Stagger children animations
+          entry.target.querySelectorAll('[class*="hover:"]').forEach((child, index) => {
+            (child as HTMLElement).style.transitionDelay = `${index * 80}ms`;
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -100px 0px', threshold: 0 });
+    reveals.forEach(el => revealObserver.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('active'));
   }
-  window.addEventListener("scroll", reveal);
-  // Trigger on load
-  reveal();
 
   // Typewriter Effect Logic
   const phrases = [

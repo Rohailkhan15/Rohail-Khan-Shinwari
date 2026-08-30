@@ -1,17 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import { getAllProducts, getProductBySlug } from '../../lib/sanity'
+import { getAllProducts } from '../../lib/sanity'
 import type { Product } from '../../lib/sanity'
 
 export async function getStaticPaths() {
   const products = (await getAllProducts()) || []
+  // Pass each product through props so detail pages don't re-fetch from Sanity
   return products.map((product) => ({
     params: { slug: product.slug.current },
+    props: { product },
   }))
 }
 
-const { slug } = Astro.params
-const product = await getProductBySlug(slug)
+const { product } = Astro.props as { product: Product }
 
 if (!product) {
   return Astro.redirect('/404')
@@ -23,7 +24,10 @@ const statusColors = {
 }
 ---
 
-<BaseLayout title={`${product.title} — Product`}>
+<BaseLayout
+  title={`${product.title} — Product | Rohail Khan Shinwari`}
+  description={product.description}
+>
   <section class="py-20 md:py-28">
     <div class="mx-auto max-w-3xl px-6">
       <!-- Back Link -->

@@ -181,14 +181,15 @@
     border-radius: 9999px;
   }
 
-  /* Reveal animation */
-  .reveal {
+  /* Reveal animation — only applied when JS is available (html.js is set by
+     an inline head script), so content is never invisible without JS. */
+  .js .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .reveal.active {
+  .js .reveal.active {
     opacity: 1;
     transform: translateY(0);
   }
@@ -241,22 +242,26 @@
   animation: float 6s ease-in-out infinite;
 }
 
-/* Subtle shimmer/glow pulse for accents */
+/* Subtle shimmer/glow pulse for accents.
+   NOTE: animating `filter: blur()` forces a full repaint every frame —
+   keep the blur static and animate only opacity/transform (composited). */
 @keyframes glow-pulse {
 
   0%,
   100% {
     opacity: 0.4;
-    filter: blur(20px);
+    transform: scale(1);
   }
 
   50% {
     opacity: 0.7;
-    filter: blur(30px);
+    transform: scale(1.08);
   }
 }
 
 .animate-glow-pulse {
+  filter: blur(25px);
+  will-change: transform, opacity;
   animation: glow-pulse 4s ease-in-out infinite;
 }
 
@@ -335,6 +340,7 @@
 }
 
 .animate-orb-drift {
+  will-change: transform;
   animation: orb-drift 12s ease-in-out infinite;
 }
 
@@ -631,5 +637,24 @@
   /* Ensure section headings don't overflow */
   .animated-underline {
     word-break: break-word;
+  }
+}
+
+/* ── Respect reduced-motion preferences ─────────── */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-orb-drift,
+  .animate-glow-pulse,
+  .animate-float,
+  .animate-border-glow,
+  .animate-gradient-pulse {
+    animation: none;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

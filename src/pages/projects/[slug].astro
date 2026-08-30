@@ -1,17 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import { getAllProjects, getProjectBySlug } from '../../lib/sanity'
+import { getAllProjects } from '../../lib/sanity'
 import type { Project } from '../../lib/sanity'
 
 export async function getStaticPaths() {
   const projects = (await getAllProjects()) || []
+  // Pass each project through props so detail pages don't re-fetch from Sanity
   return projects.map((project) => ({
     params: { slug: project.slug.current },
+    props: { project },
   }))
 }
 
-const { slug } = Astro.params
-const project = await getProjectBySlug(slug)
+const { project } = Astro.props as { project: Project }
 
 if (!project) {
   return Astro.redirect('/404')
@@ -23,7 +24,10 @@ const statusColors = {
 }
 ---
 
-<BaseLayout title={`${project.title} — Project`}>
+<BaseLayout
+  title={`${project.title} — Project | Rohail Khan Shinwari`}
+  description={project.description}
+>
   <section class="py-8 sm:py-12 md:py-16">
     <div class="mx-auto max-w-3xl px-4 sm:px-6">
       <!-- Back Link -->

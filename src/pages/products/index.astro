@@ -8,7 +8,10 @@ const filters = ['All', 'Live', 'Building']
 const products = (await getAllProducts()) || []
 ---
 
-<BaseLayout title="Rohail Khan Shinwari — Products">
+<BaseLayout
+  title="Products — Software I've Built | Rohail Khan Shinwari"
+  description="Software products built by Rohail Khan Shinwari — from AI-powered tools and Chrome extensions to student-focused web apps. See what's live and what's in progress."
+>
   <!-- Ambient Background Orbs -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     <div class="absolute top-[10%] right-[-100px] w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px] animate-orb-drift"></div>
@@ -105,18 +108,19 @@ const products = (await getAllProducts()) || []
     })
   })
 
-  // Reveal
-  function reveal() {
-    const reveals = document.querySelectorAll(".reveal");
-    for (let i = 0; i < reveals.length; i++) {
-      const windowHeight = window.innerHeight;
-      const elementTop = reveals[i].getBoundingClientRect().top;
-      const elementVisible = 100;
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add("active");
-      }
-    }
+  // Reveal via IntersectionObserver (no scroll listeners)
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -100px 0px', threshold: 0 });
+    reveals.forEach(el => revealObserver.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('active'));
   }
-  window.addEventListener("scroll", reveal);
-  reveal();
 </script>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import Icon from '../components/Icon.astro'
 
 const whatIDo = [
   {
@@ -34,7 +35,10 @@ const currently = [
 const email = 'Shinwarir098@gmail.com'
 ---
 
-<BaseLayout title="Rohail Khan Shinwari — About">
+<BaseLayout
+  title="About Me — AI Student & Builder | Rohail Khan Shinwari"
+  description="Get to know Rohail Khan Shinwari — AI student at NUTech Islamabad, freelancer, content creator, and builder of web apps and AI automations."
+>
   <!-- Ambient Background Orbs -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     <div class="absolute top-[10%] right-[-100px] w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px] animate-orb-drift"></div>
@@ -120,7 +124,7 @@ const email = 'Shinwarir098@gmail.com'
         href={`mailto:${email}`}
         class="inline-flex items-center gap-2 font-body-lg text-body-lg text-primary hover:text-primary/80 transition-colors group"
       >
-        <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">mail</span>
+        <Icon name="mail" size={20} class="group-hover:translate-x-1 transition-transform" />
         {email}
       </a>
       <p class="mt-4 font-body-md text-body-md text-on-surface-variant">
@@ -131,17 +135,19 @@ const email = 'Shinwarir098@gmail.com'
 </BaseLayout>
 
 <script>
-  function reveal() {
-    const reveals = document.querySelectorAll(".reveal");
-    for (let i = 0; i < reveals.length; i++) {
-      const windowHeight = window.innerHeight;
-      const elementTop = reveals[i].getBoundingClientRect().top;
-      const elementVisible = 100;
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add("active");
-      }
-    }
+  // Reveal via IntersectionObserver (no scroll listeners)
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -100px 0px', threshold: 0 });
+    reveals.forEach(el => revealObserver.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('active'));
   }
-  window.addEventListener("scroll", reveal);
-  reveal();
 </script>

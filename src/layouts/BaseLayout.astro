@@ -7,17 +7,65 @@ interface Props {
   title?: string
   description?: string
   image?: string
+  /** Open Graph object type — use "article" for blog posts */
+  type?: 'website' | 'article'
+  /** ISO date — emitted as article:published_time for blog posts */
+  publishedAt?: string
+  /** Extra JSON-LD structured data (without @context) for this page */
+  extraJsonLd?: Record<string, any> | Record<string, any>[]
 }
 
-const { 
+const {
   title = 'Rohail Khan Shinwari — Personal Website',
   description = 'Rohail Khan Shinwari — AI student, builder, and writer. Explore my projects, read my blog, and learn about what I\'m building.',
-  image = '/images/Rohail_black_proifle.jpeg'
+  image = '/images/Rohail_black_proifle.jpeg',
+  type = 'website',
+  publishedAt,
+  extraJsonLd,
 } = Astro.props
 
 const siteName = 'Rohail Khan Shinwari'
-const url = new URL(Astro.url.pathname, Astro.site)
-const canonicalURL = url.href
+const siteOrigin = (Astro.site ?? Astro.url).origin
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin).href
+const ogImage = new URL(image, siteOrigin).href
+
+// Structured data — author entity reused across schemas
+const author = {
+  '@type': 'Person',
+  name: siteName,
+  url: `${siteOrigin}/`,
+  jobTitle: 'AI Student & Developer',
+  email: 'mailto:Shinwarir098@gmail.com',
+  sameAs: [
+    'https://github.com/Rohailkhan15',
+    'https://www.linkedin.com/in/rohail-khan-shinwari-968561316/',
+    'https://x.com/rshinwari09',
+    'https://youtube.com/@rshinwari09',
+    'https://www.instagram.com/shinwari09/',
+    'https://substack.com/@rohailkhan2',
+  ],
+}
+
+const jsonLdBlocks: Record<string, any>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteName,
+    url: `${siteOrigin}/`,
+    author,
+  },
+]
+
+// Person schema on the homepage (this is a personal portfolio)
+if (Astro.url.pathname === '/') {
+  jsonLdBlocks.push({ '@context': 'https://schema.org', ...author })
+}
+
+// Page-specific schemas (e.g. BlogPosting) passed in via props
+if (extraJsonLd) {
+  const extra = Array.isArray(extraJsonLd) ? extraJsonLd : [extraJsonLd]
+  jsonLdBlocks.push(...extra.map(block => ({ '@context': 'https://schema.org', ...block })))
+}
 ---
 
 <!doctype html>
@@ -27,36 +75,47 @@ const canonicalURL = url.href
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0a0f1a" />
+    <!-- Marks JS availability early so reveal animations only hide content when JS runs -->
+    <script is:inline>document.documentElement.classList.add('js')</script>
     <!-- Fonts and Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"></noscript>
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.url).href} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:site_name" content={siteName} />
-    
+    <meta property="og:locale" content="en_US" />
+    {type === 'article' && publishedAt && (
+      <meta property="article:published_time" content={publishedAt} />
+    )}
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, Astro.url).href} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured data (JSON-LD) -->
+    {jsonLdBlocks.map(block => (
+      <script type="application/ld+json" set:html={JSON.stringify(block)} />
+    ))}
   </head>
   <body class="min-h-screen flex flex-col">
     <Navbar />
