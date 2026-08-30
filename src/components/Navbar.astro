@@ -14,7 +14,7 @@ const currentPath = Astro.url.pathname
 
 <header
   id="navbar"
-  class="fixed top-0 w-full z-50 bg-transparent border-b border-transparent transition-all duration-500"
+  class="fixed top-0 w-full z-50 bg-transparent border-b border-transparent transition-colors duration-500"
 >
   <div class="flex justify-between items-center px-4 sm:px-6 py-4 max-w-[1200px] mx-auto">
     <a href="/" class="font-display text-lg sm:text-xl md:text-2xl font-bold text-[#e2e8f0] hover:text-[#3b82f6] transition-colors duration-300 truncate mr-4">
@@ -146,12 +146,15 @@ const currentPath = Astro.url.pathname
 
   // Navbar scroll effect: transparent → frosted glass.
   // Passive listener + write styles only when the state actually flips.
+  // backdrop-filter is skipped on mobile: re-blurring content behind the bar
+  // on every scroll frame is the single biggest scroll-jank cost there.
+  const useBackdropBlur = window.matchMedia('(min-width: 768px) and (hover: hover)').matches;
   let scrolled = false;
   function applyNavbarStyle(isScrolled: boolean) {
     if (isScrolled) {
-      navbar.style.backgroundColor = 'rgba(10, 15, 26, 0.85)';
-      navbar.style.backdropFilter = 'blur(20px)';
-      navbar.style.webkitBackdropFilter = 'blur(20px)';
+      navbar.style.backgroundColor = useBackdropBlur ? 'rgba(10, 15, 26, 0.85)' : 'rgba(10, 15, 26, 0.97)';
+      navbar.style.backdropFilter = useBackdropBlur ? 'blur(20px)' : 'none';
+      navbar.style.webkitBackdropFilter = useBackdropBlur ? 'blur(20px)' : 'none';
       navbar.style.borderBottomColor = 'rgba(255, 255, 255, 0.06)';
     } else {
       navbar.style.backgroundColor = 'transparent';

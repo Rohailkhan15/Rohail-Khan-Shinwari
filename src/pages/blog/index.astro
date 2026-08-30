@@ -15,8 +15,8 @@ const allPosts = (await getAllPosts()) || []
 >
   <!-- Ambient Background Orbs -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute top-[10%] right-[-100px] w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px] animate-orb-drift"></div>
-    <div class="absolute bottom-[20%] left-[-80px] w-[350px] h-[350px] rounded-full bg-secondary/[0.03] blur-[100px] animate-orb-drift" style="animation-delay: -4s;"></div>
+    <div class="absolute top-[10%] right-[-100px] w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px] animate-orb-drift hidden md:block"></div>
+    <div class="absolute bottom-[20%] left-[-80px] w-[350px] h-[350px] rounded-full bg-secondary/[0.03] blur-[100px] animate-orb-drift hidden md:block" style="animation-delay: -4s;"></div>
   </div>
 
   <section class="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 sm:py-12 relative z-10 reveal">

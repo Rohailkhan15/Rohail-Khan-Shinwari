@@ -640,6 +640,31 @@
   }
 }
 
+/* ── Mobile GPU budget ────────────────────────────
+   Mobile GPUs struggle with animated blur layers: each frame forces
+   expensive recomposition, which makes scrolling feel slow. Freeze the
+   decorative animations on touch/small-screen devices — the elements
+   stay visible, just static. Desktop is untouched. */
+
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
+
+  .animate-orb-drift,
+  .animate-glow-pulse,
+  .animate-gradient-pulse,
+  .animate-border-glow,
+  .animate-float {
+    animation: none;
+  }
+
+  /* The ambient orbs are barely visible at 2–4% opacity on small screens
+     but cost a large blurred layer each — drop them entirely. */
+  .ambient-orb,
+  .ambient-orb-1,
+  .ambient-orb-2 {
+    display: none;
+  }
+}
+
 /* ── Respect reduced-motion preferences ─────────── */
 
 @media (prefers-reduced-motion: reduce) {

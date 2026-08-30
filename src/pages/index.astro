@@ -10,8 +10,8 @@ const latestPosts = (allPosts || []).slice(0, 3)
 ---
 
 <BaseLayout title="Rohail Khan Shinwari — Built for the future.">
-  <!-- Ambient Background Orbs -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+  <!-- Ambient Background Orbs (desktop only — animated blur layers are expensive on mobile GPUs) -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden hidden md:block">
     <div class="absolute top-[10%] right-[-100px] w-[400px] h-[400px] rounded-full bg-primary/[0.04] blur-[100px] animate-orb-drift"></div>
     <div class="absolute bottom-[20%] left-[-80px] w-[350px] h-[350px] rounded-full bg-secondary/[0.03] blur-[100px] animate-orb-drift" style="animation-delay: -4s;"></div>
     <div class="absolute top-[60%] right-[20%] w-[250px] h-[250px] rounded-full bg-primary/[0.02] blur-[80px] animate-orb-drift" style="animation-delay: -8s;"></div>
